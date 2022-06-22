@@ -1,0 +1,81 @@
+<?php
+session_start();
+ob_start();
+require './../../../template/config.php';
+
+header('Content-Type: application/json');
+
+
+$response = [];
+
+if((empty($_SESSION['username']) && empty($_SESSION['password']))) {
+
+	$response = [
+	    "draw" => 0,
+	    "iTotalRecords" => 0,
+	    "iTotalDisplayRecords" => 0,
+	    "aaData" => []
+	];
+}
+else {
+	
+	$draw = empty($_POST['draw']) ? '' : htmlspecialchars($_POST['draw']);  
+	$row = empty($_POST['start']) ? 0 : htmlspecialchars($_POST['start']); 
+	$rowperpage =empty($_POST['length']) ? 10 : htmlspecialchars($_POST['length']);  // Rows display per page
+
+	##SortOrder 
+	$columnIndex = empty($_POST['order'][0]['column']) ? 0 : htmlspecialchars($_POST['order'][0]['column']); // Column index
+	$columnName =  'maHS'; // Column name
+	if (is_array($_POST['columns'][$columnIndex]['data'])) {
+		$columnName = empty($_POST['columns'][$columnIndex]['data']['sort']) ? 'maHS' : htmlspecialchars($_POST['columns'][$columnIndex]['data']['sort']);
+	} else {
+		$columnName = empty($_POST['columns'][$columnIndex]['data']) ? 'maHS' : htmlspecialchars($_POST['columns'][$columnIndex]['data']);
+	}
+	$columnSortOrder = empty($_POST['order'][0]['dir']) ? 'asc' : htmlspecialchars($_POST['order'][0]['dir']); // asc or desc
+	 
+	## Search 
+	$searchValue = empty($_POST['search']['value']) ? '' : htmlspecialchars($_POST['search']['value']); // Search value
+	$searchQuery = " ";
+	if($searchValue != ''){
+	   $searchQuery .= " AND (`tenHS` like '%".$searchValue."%' OR
+			            `noiSinh` LIKE '%".$searchValue."%' OR `ngaySinh` LIKE '%".$searchValue."%') ";
+	}
+
+	## Total number of records without filtering
+	$sel = $mysqli->query("SELECT count(*) AS `allcount` FROM `hocsinh`");
+	$records = $sel->fetch_array(MYSQLI_ASSOC);
+	$totalRecords = $records['allcount'];
+	 
+	## Total number of records with filtering
+	$sel = $mysqli->query("SELECT count(*) AS `allcount` FROM `hocsinh` WHERE 1 ".$searchQuery);
+	$records = $sel->fetch_array(MYSQLI_ASSOC);
+	$totalRecordwithFilter = $records['allcount'];
+	 
+	## Fetch records
+	$empQuery = "SELECT * FROM `hocsinh` WHERE 1 ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT ".$row.",".$rowperpage;
+	//echo $empQuery;
+	$empRecords = $mysqli->query($empQuery);
+	 
+	$data = array();
+	 
+	while($row = $empRecords->fetch_array(MYSQLI_ASSOC)){
+	    $data[] = array(
+	    		'maHS' => $row['maHS'],
+	    		'tenHS' => $row['tenHS'],
+	    		'ngaySinh' => $row['ngaySinh'],
+	    		'gioiTinh' => $row['gioiTinh'],
+	    		'noiSinh' => $row['noiSinh']
+
+	        );
+	}
+	 
+	## Response
+	$response = array(
+	    "draw" => intval($draw),
+	    "iTotalRecords" => $totalRecords,
+	    "iTotalDisplayRecords" => $totalRecordwithFilter,
+	    "aaData" => $data
+	);
+}
+
+echo json_encode($response);
