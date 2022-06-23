@@ -31,7 +31,7 @@ if (!empty($_GET['maHS'])) {
 					</div><!-- /.col -->
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
-							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
+							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPTLienHa">Trang chủ</a></li>
 							<li class="breadcrumb-item active"><?php echo $title; ?></li>
 						</ol>
 					</div><!-- /.col -->
@@ -114,7 +114,7 @@ if (!empty($_GET['maHS'])) {
 	<script>
 		$(document).ready(function() {
 			$.ajax({
-				url: '/QuanLyDiemTHPT/ajax/tracuu/diem/getLop.php',
+				url: '/QuanLyDiemTHPTLienHa/ajax/tracuu/diem/getLop.php',
 				data: {
 					maHS: _GET_URL('maHS')
 				},
@@ -132,7 +132,7 @@ if (!empty($_GET['maHS'])) {
 						$('#LopTabContent').append('<div id="tab' + indexLop + '_Lopdata" class="tab-pane cont' + activeContent + '"><div class="row"><div class="col-7 col-md-10"><div class="tab-content" id="HocKy' + indexLop + '-tabContent"></div></div><div class="col-5 col-md-2"><div class="nav flex-column nav-tabs nav-tabs-right h-100" id="HocKy' + indexLop + '-tab" role="tablist" aria-orientation="vertical"></div></div></div></div>');
 
 						$.ajax({
-							url: '/QuanLyDiemTHPT/ajax/tracuu/diem/getHocKy.php',
+							url: '/QuanLyDiemTHPTLienHa/ajax/tracuu/diem/getHocKy.php',
 							data: {
 								maHS: _GET_URL('maHS'),
 								maLop: rowLop.maLop
@@ -169,7 +169,7 @@ if (!empty($_GET['maHS'])) {
 				'serverSide': true,
 				'serverMethod': 'post',
 				'ajax': {
-					'url': '/QuanLyDiemTHPT/ajax/tracuu/diem/getDiem.php?maHS=' + maHS + '&maLop=' + maLop + '&maHK=' + maHK
+					'url': '/QuanLyDiemTHPTLienHa/ajax/tracuu/diem/getDiem.php?maHS=' + maHS + '&maLop=' + maLop + '&maHK=' + maHK
 				},
 				pageLength: 50,
 				'columns': [{
@@ -280,7 +280,7 @@ if (!empty($_GET['maHS'])) {
 					</div><!-- /.col -->
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
-							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
+							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPTLienHa">Trang chủ</a></li>
 							<li class="breadcrumb-item active"><?php echo $title; ?></li>
 						</ol>
 					</div><!-- /.col -->
@@ -323,7 +323,7 @@ if (!empty($_GET['maHS'])) {
 				serverSide: true,
 				serverMethod: 'post',
 				ajax: {
-					'url': '/QuanLyDiemTHPT/ajax/tracuu/diem/getHocSinh.php'
+					'url': '/QuanLyDiemTHPTLienHa/ajax/tracuu/diem/getHocSinh.php'
 				},
 				pageLength: 10,
 				'columns': [{
@@ -333,7 +333,7 @@ if (!empty($_GET['maHS'])) {
 					{
 						data: 'tenHS',
 						fnCreatedCell: function(nTd, sData, oData, iRow, iCol) {
-							$(nTd).html("<a href='/QuanLyDiemTHPT/tracuu/diem.php?maHS=" + oData.maHS + "'>" + oData.tenHS + "</a>");
+							$(nTd).html("<a href='/QuanLyDiemTHPTLienHa/tracuu/diem.php?maHS=" + oData.maHS + "'>" + oData.tenHS + "</a>");
 						}
 					},
 					{

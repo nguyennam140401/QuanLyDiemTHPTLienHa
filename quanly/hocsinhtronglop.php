@@ -40,7 +40,7 @@ if (!empty($_GET['maLop'])) {
 					</div><!-- /.col -->
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
-							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
+							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPTLienHa">Trang chủ</a></li>
 							<li class="breadcrumb-item active"><?php echo $title; ?></li>
 						</ol>
 					</div><!-- /.col -->
@@ -223,7 +223,7 @@ if (!empty($_GET['maLop'])) {
 	<script>
 		$(document).ready(function() {
 			$.ajax({
-				url: '/QuanLyDiemTHPT/ajax/tracuu/getHocKy.php',
+				url: '/QuanLyDiemTHPTLienHa/ajax/tracuu/getHocKy.php',
 				success: function(data) {
 					$.each(data, function(index, row) {
 						var active = '',
@@ -246,7 +246,7 @@ if (!empty($_GET['maLop'])) {
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
-					url: '/QuanLyDiemTHPT/ajax/quanly/lophoc/themHocSinhvaoLop.php',
+					url: '/QuanLyDiemTHPTLienHa/ajax/quanly/lophoc/themHocSinhvaoLop.php',
 					type: 'POST',
 					data: Data,
 					success: function(result) {
@@ -287,7 +287,7 @@ if (!empty($_GET['maLop'])) {
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
-					url: '/QuanLyDiemTHPT/ajax/quanly/lophoc/chuyenLop.php',
+					url: '/QuanLyDiemTHPTLienHa/ajax/quanly/lophoc/chuyenLop.php',
 					type: 'POST',
 					data: Data,
 					success: function(result) {
@@ -329,7 +329,7 @@ if (!empty($_GET['maLop'])) {
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
-					url: '/QuanLyDiemTHPT/ajax/quanly/lophoc/doiChuNhiem.php',
+					url: '/QuanLyDiemTHPTLienHa/ajax/quanly/lophoc/doiChuNhiem.php',
 					type: 'POST',
 					data: Data,
 					success: function(result) {
@@ -371,7 +371,7 @@ if (!empty($_GET['maLop'])) {
 				'serverSide': true,
 				'serverMethod': 'post',
 				'ajax': {
-					'url': '/QuanLyDiemTHPT/ajax/quanly/lophoc/getHocSinh.php'
+					'url': '/QuanLyDiemTHPTLienHa/ajax/quanly/lophoc/getHocSinh.php'
 				},
 				pageLength: 10,
 				'columns': [{
@@ -412,7 +412,7 @@ if (!empty($_GET['maLop'])) {
 				}
 			});
 			$.ajax({
-				url: '/QuanLyDiemTHPT/ajax/quanly/lophoc/getHocKy.php',
+				url: '/QuanLyDiemTHPTLienHa/ajax/quanly/lophoc/getHocKy.php',
 				success: function(data) {
 					$('#maHK').html('');
 					$.each(data, function(index, row) {
@@ -440,7 +440,7 @@ if (!empty($_GET['maLop'])) {
 		// Hiện model sửa chủ nhiệm
 		function DoiChuNhiem() {
 			$.ajax({
-				url: '/QuanLyDiemTHPT/ajax/quanly/lophoc/getInfo.php',
+				url: '/QuanLyDiemTHPTLienHa/ajax/quanly/lophoc/getInfo.php',
 				success: function(data) {
 					$('#maGV').html('');
 					$.each(data[4], function(index, row) {
@@ -462,7 +462,7 @@ if (!empty($_GET['maLop'])) {
 				'serverSide': true,
 				'serverMethod': 'post',
 				'ajax': {
-					'url': '/QuanLyDiemTHPT/ajax/tracuu/lophoc/getLopHoc.php?maLop=' + maLop + '&maHK=' + maHK
+					'url': '/QuanLyDiemTHPTLienHa/ajax/tracuu/lophoc/getLopHoc.php?maLop=' + maLop + '&maHK=' + maHK
 				},
 				pageLength: 50,
 				'columns': [{
@@ -515,7 +515,7 @@ if (!empty($_GET['maLop'])) {
 				var data = dataTable.row($(this).parents('tr')).data();
 				if (data) {
 					$.ajax({
-						url: '/QuanLyDiemTHPT/ajax/quanly/lophoc/getLopHocByPhanLop.php',
+						url: '/QuanLyDiemTHPTLienHa/ajax/quanly/lophoc/getLopHocByPhanLop.php',
 						data: {
 							id: data.phan_lop_hocsinh.id
 						},

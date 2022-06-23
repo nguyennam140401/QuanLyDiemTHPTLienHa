@@ -3,7 +3,7 @@ session_start();
 ob_start();
 
 if ((!empty($_SESSION['username']) && !empty($_SESSION['password'])) || (!empty($_COOKIE['username']) && !empty($_COOKIE['token']))) {
-	header('Location: /QuanLyDIemTHPT/');
+	header('Location: /QuanLyDiemTHPTLienHa/');
 }
 
 ?>
@@ -45,7 +45,7 @@ if ((!empty($_SESSION['username']) && !empty($_SESSION['password'])) || (!empty(
 	<div class="login-box">
 		<div class="card card-outline card-primary">
 			<div class="card-header text-center">
-				<a href="/QuanLyDiemTHPT" class="h1"><i class="fas fa-graduation-cap"></i> <b>VN</b>EDU</a>
+				<a href="/QuanLyDiemTHPTLienHa" class="h1"><i class="fas fa-graduation-cap"></i> <b>VN</b>EDU</a>
 			</div>
 			<div class="card-body">
 				<p class="login-box-msg">Bạn quyên mật khẩu của mình?</p>
@@ -68,7 +68,7 @@ if ((!empty($_SESSION['username']) && !empty($_SESSION['password'])) || (!empty(
 			</div>
 			<div class="card-footer">
 				<p class="mt-1 mb-1">
-					<a href="/QuanLyDiemTHPT/login.php">Quay lại trang Đăng nhập</a>
+					<a href="/QuanLyDiemTHPTLienHa/login.php">Quay lại trang Đăng nhập</a>
 				</p>
 			</div>
 			<!-- /.login-card-body -->
@@ -90,7 +90,7 @@ if ((!empty($_SESSION['username']) && !empty($_SESSION['password'])) || (!empty(
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
-					url: '/QuanLyDiemTHPT/ajax/login/forgot.php',
+					url: '/QuanLyDiemTHPTLienHa/ajax/login/forgot.php',
 					type: 'POST',
 					data: Data,
 					success: function(result) {

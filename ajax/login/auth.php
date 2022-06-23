@@ -11,7 +11,7 @@ $response = [];
 if ((!empty($_SESSION['username']) && !empty($_SESSION['password'])) || (isset($_COOKIE['username']) && isset($_COOKIE['token']))) {
 
 	$response['success'] = 'Chuyển hướng!';
-	$response['returnURL'] = '/quanLyDiemTHPT';
+	$response['returnURL'] = '/QuanLyDiemTHPTLienHa';
 } else {
 
 	if (!empty($_POST['username']) && !empty($_POST['password'])) {
@@ -34,7 +34,7 @@ if ((!empty($_SESSION['username']) && !empty($_SESSION['password'])) || (isset($
 
 
 					$response['success'] = 'Đăng nhập thành công! Chúng tôi sẽ chuyển hướng bạn sau giây lát!';
-					$response['returnURL'] = '/QuanLyDiemTHPT';
+					$response['returnURL'] = '/QuanLyDiemTHPTLienHa';
 				} else {
 					$response['error'] = 'Mật khẩu bạn nhập không hợp lệ!';
 				}

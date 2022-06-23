@@ -26,7 +26,7 @@ require './../template/tpl_header.php';
 					</div><!-- /.col -->
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
-							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
+							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPTLienHa">Trang chủ</a></li>
 							<li class="breadcrumb-item active"><?php echo $title; ?></li>
 						</ol>
 					</div><!-- /.col -->
@@ -91,7 +91,7 @@ require './../template/tpl_header.php';
 		$(document).ready(function() {
 			var classFillData = null;
 			$.ajax({
-				url: '/QuanLyDiemTHPT/ajax/quanly/lophoc/getInfo.php',
+				url: '/QuanLyDiemTHPTLienHa/ajax/quanly/lophoc/getInfo.php',
 				success: function(data) {
 					classFillData = data;
 
@@ -119,7 +119,7 @@ require './../template/tpl_header.php';
 				serverSide: true,
 				serverMethod: 'post',
 				ajax: {
-					'url': '/QuanLyDiemTHPT/ajax/quanly/lophoc/getLopHoc.php'
+					'url': '/QuanLyDiemTHPTLienHa/ajax/quanly/lophoc/getLopHoc.php'
 				},
 				pageLength: 50,
 				'columns': [{
@@ -135,7 +135,7 @@ require './../template/tpl_header.php';
 					{
 						data: 'tenLop',
 						fnCreatedCell: function(nTd, sData, oData, iRow, iCol) {
-							$(nTd).html("<a href='/QuanLyDiemTHPT/quanly/phanconggiangday.php?maLop=" + oData.maLop + "'>" + oData.tenLop + "</a>");
+							$(nTd).html("<a href='/QuanLyDiemTHPTLienHa/quanly/phanconggiangday.php?maLop=" + oData.maLop + "'>" + oData.tenLop + "</a>");
 						}
 					},
 					{

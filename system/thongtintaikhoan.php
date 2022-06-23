@@ -14,7 +14,7 @@ require './../template/tpl_header.php';
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
+						<li class="breadcrumb-item"><a href="/QuanLyDiemTHPTLienHa">Trang chủ</a></li>
 						<li class="breadcrumb-item active"><?php echo $title; ?></li>
 					</ol>
 				</div><!-- /.col -->
@@ -102,7 +102,7 @@ require './../template/tpl_header.php';
 			var form = $(this);
 			var Data = form.serialize();
 			$.ajax({
-				url: '/QuanLyDiemTHPT/ajax/system/usereditTaiKhoan.php',
+				url: '/QuanLyDiemTHPTLienHa/ajax/system/usereditTaiKhoan.php',
 				type: 'POST',
 				data: Data,
 				success: function(result) {

@@ -20,7 +20,7 @@ $userCount = $mysqli->query('SELECT COUNT(*) AS `count` FROM `taiKhoan`;')->fetc
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
+						<li class="breadcrumb-item"><a href="/QuanLyDiemTHPTLienHa">Trang chủ</a></li>
 						<li class="breadcrumb-item active"><?php echo $title; ?></li>
 					</ol>
 				</div><!-- /.col -->

@@ -5,4 +5,4 @@ setcookie("username", '', $expires, "/");
 setcookie("token", '', $expires, "/");
 session_destroy();
 
-header('Location: /QuanLyDiemTHPT');
+header('Location: /QuanLyDiemTHPTLienHa');

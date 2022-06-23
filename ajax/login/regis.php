@@ -11,7 +11,7 @@ $response = [];
 if ((!empty($_SESSION['username']) && !empty($_SESSION['password'])) || (isset($_COOKIE['username']) && isset($_COOKIE['token']))) {
 
 	$response['success'] = 'Chuyển hướng!';
-	$response['returnURL'] = '/QuanLyDIemTHPT';
+	$response['returnURL'] = '/QuanLyDiemTHPTLienHa';
 } else {
 
 	if (!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['repassword']) && !empty($_POST['agreeTerms'])) {
@@ -51,7 +51,7 @@ if ((!empty($_SESSION['username']) && !empty($_SESSION['password'])) || (isset($
 					$update = $mysqli->query('INSERT INTO `taikhoan`(`username`, `password`, `email`) VALUES (\'' . $username . '\', \'' . md5($password) . '\', \'' . $email . '\');');
 					if ($update) {
 						$response['success'] = 'Đăng ký tài khoản thành công! Bạn có thể đăng nhập với tài khoản của mình.';
-						$response['returnURL'] = '/QuanLyDIemTHPT/';
+						$response['returnURL'] = '/QuanLyDiemTHPTLienHa/';
 
 						//Gửi email
 					} else {

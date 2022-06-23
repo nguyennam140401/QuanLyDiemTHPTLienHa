@@ -24,7 +24,7 @@ require './../template/tpl_header.php';
 					</div><!-- /.col -->
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
-							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
+							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPTLienHa">Trang chủ</a></li>
 							<li class="breadcrumb-item active"><?php echo $title; ?></li>
 						</ol>
 					</div><!-- /.col -->
@@ -275,7 +275,7 @@ require './../template/tpl_header.php';
 				'serverSide': true,
 				'serverMethod': 'post',
 				'ajax': {
-					'url': '/QuanLyDiemTHPT/ajax/quanly/namhoc/getNamHoc.php'
+					'url': '/QuanLyDiemTHPTLienHa/ajax/quanly/namhoc/getNamHoc.php'
 				},
 				pageLength: 10,
 				'columns': [{
@@ -304,7 +304,7 @@ require './../template/tpl_header.php';
 				'serverSide': true,
 				'serverMethod': 'post',
 				'ajax': {
-					'url': '/QuanLyDiemTHPT/ajax/quanly/namhoc/getKhoiLop.php'
+					'url': '/QuanLyDiemTHPTLienHa/ajax/quanly/namhoc/getKhoiLop.php'
 				},
 				pageLength: 10,
 				'columns': [{
@@ -333,7 +333,7 @@ require './../template/tpl_header.php';
 				'serverSide': true,
 				'serverMethod': 'post',
 				'ajax': {
-					'url': '/QuanLyDiemTHPT/ajax/quanly/namhoc/getHocKy.php'
+					'url': '/QuanLyDiemTHPTLienHa/ajax/quanly/namhoc/getHocKy.php'
 				},
 				pageLength: 10,
 				'columns': [{
@@ -386,7 +386,7 @@ require './../template/tpl_header.php';
 				var data = listDataTableNamHoc.row($(this).parents('tr')).data();
 				if (confirm('Bạn có muốn xoá bản ghi này?')) {
 					$.ajax({
-						url: '/QuanLyDiemTHPT/ajax/quanly/namhoc/deleteNamHoc.php',
+						url: '/QuanLyDiemTHPTLienHa/ajax/quanly/namhoc/deleteNamHoc.php',
 						type: 'POST',
 						data: {
 							maNH: data['maNH']
@@ -424,7 +424,7 @@ require './../template/tpl_header.php';
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
-					url: '/QuanLyDiemTHPT/ajax/quanly/namhoc/editNamHoc.php',
+					url: '/QuanLyDiemTHPTLienHa/ajax/quanly/namhoc/editNamHoc.php',
 					type: 'POST',
 					data: Data,
 					success: function(result) {
@@ -464,7 +464,7 @@ require './../template/tpl_header.php';
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
-					url: '/QuanLyDiemTHPT/ajax/quanly/namhoc/addNamHoc.php',
+					url: '/QuanLyDiemTHPTLienHa/ajax/quanly/namhoc/addNamHoc.php',
 					type: 'POST',
 					data: Data,
 					success: function(result) {
@@ -524,7 +524,7 @@ require './../template/tpl_header.php';
 				var data = listDataTableHocKy.row($(this).parents('tr')).data();
 				if (confirm('Bạn có muốn xoá bản ghi này?')) {
 					$.ajax({
-						url: '/QuanLyDiemTHPT/ajax/quanly/namhoc/deleteHocKy.php',
+						url: '/QuanLyDiemTHPTLienHa/ajax/quanly/namhoc/deleteHocKy.php',
 						type: 'POST',
 						data: {
 							maHK: data['maHK']
@@ -562,7 +562,7 @@ require './../template/tpl_header.php';
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
-					url: '/QuanLyDiemTHPT/ajax/quanly/namhoc/editHocKy.php',
+					url: '/QuanLyDiemTHPTLienHa/ajax/quanly/namhoc/editHocKy.php',
 					type: 'POST',
 					data: Data,
 					success: function(result) {
@@ -602,7 +602,7 @@ require './../template/tpl_header.php';
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
-					url: '/QuanLyDiemTHPT/ajax/quanly/namhoc/addHocKy.php',
+					url: '/QuanLyDiemTHPTLienHa/ajax/quanly/namhoc/addHocKy.php',
 					type: 'POST',
 					data: Data,
 					success: function(result) {
@@ -663,7 +663,7 @@ require './../template/tpl_header.php';
 				var data = listDataTableKhoiLop.row($(this).parents('tr')).data();
 				if (confirm('Bạn có muốn xoá bản ghi này?')) {
 					$.ajax({
-						url: '/QuanLyDiemTHPT/ajax/quanly/namhoc/deleteKhoiLop.php',
+						url: '/QuanLyDiemTHPTLienHa/ajax/quanly/namhoc/deleteKhoiLop.php',
 						type: 'POST',
 						data: {
 							maKhoiLop: data['maKhoiLop']
@@ -701,7 +701,7 @@ require './../template/tpl_header.php';
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
-					url: '/QuanLyDiemTHPT/ajax/quanly/namhoc/editKhoiLop.php',
+					url: '/QuanLyDiemTHPTLienHa/ajax/quanly/namhoc/editKhoiLop.php',
 					type: 'POST',
 					data: Data,
 					success: function(result) {
@@ -741,7 +741,7 @@ require './../template/tpl_header.php';
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
-					url: '/QuanLyDiemTHPT/ajax/quanly/namhoc/addKhoiLop.php',
+					url: '/QuanLyDiemTHPTLienHa/ajax/quanly/namhoc/addKhoiLop.php',
 					type: 'POST',
 					data: Data,
 					success: function(result) {
