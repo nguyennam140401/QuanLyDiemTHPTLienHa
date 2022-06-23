@@ -11,7 +11,7 @@ $response = [];
 if ((!empty($_SESSION['username']) && !empty($_SESSION['password'])) || (isset($_COOKIE['username']) && isset($_COOKIE['token']))) {
 
 	$response['success'] = 'Chuyển hướng!';
-	$response['returnURL'] = '/';
+	$response['returnURL'] = '/quanLyDiemTHPT';
 } else {
 
 	if (!empty($_POST['username']) && !empty($_POST['password'])) {
@@ -25,8 +25,8 @@ if ((!empty($_SESSION['username']) && !empty($_SESSION['password'])) || (isset($
 				if ($taikhoan['password'] == md5($password)) {
 					// Lưu thông tin vào session và cookie
 					if (isset($_POST['remember']) && $_POST['remember'] == "true") {
-						setcookie('username', $taikhoan['username'], time() + (30 * 86400), "/QuanLyDiemTHPT"); // save 30 days
-						setcookie('token', md5($taikhoan['password']), time() + (30 * 86400), "/QuanLyDiemTHPT"); // save 30 days
+						setcookie('username', $taikhoan['username'], time() + (30 * 86400), "/"); // save 30 days
+						setcookie('token', md5($taikhoan['password']), time() + (30 * 86400), "/"); // save 30 days
 					}
 
 					$_SESSION['username'] = $taikhoan['username'];
@@ -34,7 +34,7 @@ if ((!empty($_SESSION['username']) && !empty($_SESSION['password'])) || (isset($
 
 
 					$response['success'] = 'Đăng nhập thành công! Chúng tôi sẽ chuyển hướng bạn sau giây lát!';
-					$response['returnURL'] = '/';
+					$response['returnURL'] = '/QuanLyDiemTHPT';
 				} else {
 					$response['error'] = 'Mật khẩu bạn nhập không hợp lệ!';
 				}

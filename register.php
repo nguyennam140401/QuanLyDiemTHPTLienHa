@@ -3,7 +3,7 @@ session_start();
 ob_start();
 
 if ((!empty($_SESSION['username']) && !empty($_SESSION['password'])) || (!empty($_COOKIE['username']) && !empty($_COOKIE['token']))) {
-	header('Location: /');
+	header('Location: /QuanLyDIemTHPT/');
 }
 
 $title = 'Đăng nhập';
@@ -20,7 +20,7 @@ $title = 'Đăng nhập';
 	<meta name="author" content="vuiz.net">
 	<meta property="og:title" content="Hệ thống quản lý điểm trường THPT Liên Hà" />
 	<meta property="og:image" content="assets/images/logo-truong.png" />
-	<meta property="og:site_name" content="VNEDU" />
+	<meta property="og:site_name" content="THPTLH" />
 	<meta property="og:description" content="Hệ thống quản lý điểm trường THPT Liên Hà" />
 	<meta property="og:url" content="https://vnedu.vuiz.net" />
 	<!-- Favicon -->
@@ -105,7 +105,7 @@ $title = 'Đăng nhập';
 			<!-- /.card-body -->
 			<div class="card-footer">
 				<p class="mt-1 mb-1">
-					<a href="/login.php">Tôi đã có tài khoản?</a>
+					<a href="/QuanLyDiemTHPT/login.php">Tôi đã có tài khoản?</a>
 				</p>
 			</div>
 		</div>

@@ -8,13 +8,12 @@ header('Content-Type: application/json');
 
 $response = [];
 
-if((!empty($_SESSION['username']) && !empty($_SESSION['password'])) || (isset($_COOKIE['username']) && isset($_COOKIE['token']))) {
+if ((!empty($_SESSION['username']) && !empty($_SESSION['password'])) || (isset($_COOKIE['username']) && isset($_COOKIE['token']))) {
 
 	$response['success'] = 'Chuyển hướng!';
-	$response['returnURL'] = '/';
-}
-else {
-	
+	$response['returnURL'] = '/QuanLyDIemTHPT';
+} else {
+
 	if (!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['repassword']) && !empty($_POST['agreeTerms'])) {
 
 		$username = htmlspecialchars(trim($_POST['username']));
@@ -40,19 +39,19 @@ else {
 		}
 
 		if (empty($response['error'])) {
-			$searchUsername = $mysqli->query('SELECT * FROM `taikhoan` WHERE `username`=\''.$username.'\';');
+			$searchUsername = $mysqli->query('SELECT * FROM `taikhoan` WHERE `username`=\'' . $username . '\';');
 			if ($searchUsername->num_rows > 0) {
 				$response['error'][] = 'Tài khoản đã tồn tại, vui lòng chọn một tài khoản khác!';
 			} else {
-				$searchEmail = $mysqli->query('SELECT * FROM `taikhoan` WHERE `email`=\''.$email.'\';');
+				$searchEmail = $mysqli->query('SELECT * FROM `taikhoan` WHERE `email`=\'' . $email . '\';');
 				if ($searchEmail->num_rows > 0) {
 					$response['error'][] = 'Email đã được sử dụng trên hệ thống!';
 				} else {
 					// insert DB
-					$update = $mysqli->query('INSERT INTO `taikhoan`(`username`, `password`, `email`) VALUES (\''.$username.'\', \''.md5($password).'\', \''.$email.'\');');
+					$update = $mysqli->query('INSERT INTO `taikhoan`(`username`, `password`, `email`) VALUES (\'' . $username . '\', \'' . md5($password) . '\', \'' . $email . '\');');
 					if ($update) {
 						$response['success'] = 'Đăng ký tài khoản thành công! Bạn có thể đăng nhập với tài khoản của mình.';
-						$response['returnURL'] = '/';
+						$response['returnURL'] = '/QuanLyDIemTHPT/';
 
 						//Gửi email
 					} else {
@@ -61,9 +60,7 @@ else {
 				}
 			}
 		}
-
-	}
-	else {
+	} else {
 		$response['error'][] = 'Vui lòng nhập đầy đủ thông tin!';
 	}
 }

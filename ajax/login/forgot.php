@@ -11,7 +11,7 @@ $response = [];
 if ((!empty($_SESSION['username']) && !empty($_SESSION['password'])) || (isset($_COOKIE['username']) && isset($_COOKIE['token']))) {
 
 	$response['success'] = 'Chuyển hướng!';
-	$response['returnURL'] = '/';
+	$response['returnURL'] = '/QuanLyDIemTHPT';
 } else {
 
 	if (!empty($_POST['email'])) {
