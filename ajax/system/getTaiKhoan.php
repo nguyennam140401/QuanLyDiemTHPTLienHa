@@ -21,7 +21,6 @@ if ((empty($_SESSION['username']) && empty($_SESSION['password']))) {
 	// Xem phân quyền c
 	$taikhoan = array();
 	$result = $mysqli->query('SELECT * FROM `taikhoan` WHERE `username`=\'' . ($_SESSION['username']) . '\' AND `password`=\'' . ($_SESSION['password']) . '\';');
-
 	if ($result->num_rows > 0) {
 		$taikhoan = $result->fetch_array(MYSQLI_ASSOC);
 		if (in_array($taikhoan['role'], array('admin', 'manager'))) {
