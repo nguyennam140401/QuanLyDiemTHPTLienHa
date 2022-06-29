@@ -77,7 +77,7 @@ if (!empty($_GET['maLop']) && !empty($_GET['maHK']) && !empty($_GET['maMH'])) :
 							<input type="hidden" name="diem[' . $index . '][maHS]" value="' . $hocsinh['maHS'] . '" />
 							<input type="hidden" name="diem[' . $index . '][tenHS]" value="' . $hocsinh['tenHS'] . '" />
 						</td>
-						<td><a href="/QuanLyDiemTHPTLienHa/tracuu/diem.php?maHS=' . $hocsinh['maHS'] . '">' . $hocsinh['tenHS'] . '</a></td>
+						<td><a href="/QuanLyDiemTHPT/tracuu/diem.php?maHS=' . $hocsinh['maHS'] . '">' . $hocsinh['tenHS'] . '</a></td>
 						<td><input class="form-control" type="number" step="0.25" name="diem[' . $index . '][diemtx]" value="' . $diem['diemtx'] . '" placeholder="' . $diem['diemtx'] . '"/></td>
 						<td><input class="form-control" type="number" step="0.25" name="diem[' . $index . '][diem15p]" value="' . $diem['diem15p'] . '" placeholder="' . $diem['diem15p'] . '"/></td>
 						<td><input class="form-control" type="number" step="0.25" name="diem[' . $index . '][diem1t]" value="' . $diem['diem1t'] . '" placeholder="' . $diem['diem1t'] . '"/></td>
@@ -94,7 +94,7 @@ if (!empty($_GET['maLop']) && !empty($_GET['maHK']) && !empty($_GET['maMH'])) :
 							<input type="hidden" name="diem[' . $index . '][maHS]" value="' . $hocsinh['maHS'] . '" />
 							<input type="hidden" name="diem[' . $index . '][tenHS]" value="' . $hocsinh['tenHS'] . '" />
 						</td>
-						<td><a href="/QuanLyDiemTHPTLienHa/tracuu/diem.php?maHS=' . $hocsinh['maHS'] . '">' . $hocsinh['tenHS'] . '</a></td>
+						<td><a href="/QuanLyDiemTHPT/tracuu/diem.php?maHS=' . $hocsinh['maHS'] . '">' . $hocsinh['tenHS'] . '</a></td>
 						<td><input class="form-control" type="number" step="0.25" name="diem[' . $index . '][diemtx]"  placeholder="Chưa nhập"/></td>
 						<td><input class="form-control" type="number" step="0.25" name="diem[' . $index . '][diem15p]" placeholder="Chưa nhập"/></td>
 						<td><input class="form-control" type="number" step="0.25" name="diem[' . $index . '][diem1t]" placeholder="Chưa nhập"/></td>
@@ -130,7 +130,7 @@ if (!empty($_GET['maLop']) && !empty($_GET['maHK']) && !empty($_GET['maMH'])) :
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="/QuanLyDiemTHPTLienHa">Trang chủ</a></li>
+                                <li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
                                 <li class="breadcrumb-item active"><?php echo $title; ?></li>
                             </ol>
                         </div><!-- /.col -->
@@ -199,7 +199,7 @@ if (!empty($_GET['maLop']) && !empty($_GET['maHK']) && !empty($_GET['maMH'])) :
                     var form = $(this);
                     var Data = form.serialize();
                     $.ajax({
-                        url: '/QuanLyDiemTHPTLienHa/ajax/quanly/diem/nhapdiem.php',
+                        url: '/QuanLyDiemTHPT/ajax/quanly/diem/nhapdiem.php',
                         type: 'POST',
                         data: Data,
                         success: function(result) {

@@ -27,7 +27,7 @@ require './../template/tpl_header.php';
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/QuanLyDiemTHPTLienHa">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
                         <li class="breadcrumb-item active"><?php echo $title; ?></li>
                     </ol>
                 </div><!-- /.col -->
@@ -250,7 +250,7 @@ $(document).ready(function() {
         var page = $('#pagination').attr('attr-value')
         const rowsPerPage = $('select#length').val()
         $.ajax({
-            url: `/QuanLyDiemTHPTLienHa/ajax/system/getTaiKhoan.php?length=${rowsPerPage}&draw=${page}&start=${rowsPerPage*(page-1)}&search=${$('input#search').val()}`,
+            url: `/QuanLyDiemTHPT/ajax/system/getTaiKhoan.php?length=${rowsPerPage}&draw=${page}&start=${rowsPerPage*(page-1)}&search=${$('input#search').val()}`,
             dataType: "json",
             type: "GET",
             async: true,
@@ -344,7 +344,7 @@ $(document).ready(function() {
         var data = listData.find(item => item.id == e.target.getAttribute('attr-id'))
         if (confirm('Bạn có muốn xoá bản ghi này?')) {
             $.ajax({
-                url: '/QuanLyDiemTHPTLienHa/ajax/system/deleteTaiKhoan.php',
+                url: '/QuanLyDiemTHPT/ajax/system/deleteTaiKhoan.php',
                 type: 'POST',
                 data: {
                     id: data['id']
@@ -383,7 +383,7 @@ $(document).ready(function() {
         var form = $(this);
         var Data = form.serialize();
         $.ajax({
-            url: '/QuanLyDiemTHPTLienHa/ajax/system/editTaiKhoan.php',
+            url: '/QuanLyDiemTHPT/ajax/system/editTaiKhoan.php',
             type: 'POST',
             data: Data,
             success: function(result) {
@@ -425,7 +425,7 @@ $(document).ready(function() {
         var form = $(this);
         var Data = form.serialize();
         $.ajax({
-            url: '/QuanLyDiemTHPTLienHa/ajax/system/addTaiKhoan.php',
+            url: '/QuanLyDiemTHPT/ajax/system/addTaiKhoan.php',
             type: 'POST',
             data: Data,
             success: function(result) {

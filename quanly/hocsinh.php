@@ -31,7 +31,7 @@ require './../template/tpl_header.php';
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/QuanLyDiemTHPTLienHa">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
                             <li class="breadcrumb-item active"><?php echo $title; ?></li>
                         </ol>
                     </div><!-- /.col -->
@@ -271,7 +271,7 @@ require './../template/tpl_header.php';
         $(document).ready(function() {
             var classFillData = null;
             $.ajax({
-                url: '/QuanLyDiemTHPTLienHa/ajax/quanly/hocsinh/getInfoHS.php',
+                url: '/QuanLyDiemTHPT/ajax/quanly/hocsinh/getInfoHS.php',
                 success: function(data) {
                     console.log(data)
                     classFillData = data;
@@ -306,7 +306,7 @@ require './../template/tpl_header.php';
                 serverSide: true,
                 serverMethod: 'post',
                 ajax: {
-                    'url': '/QuanLyDiemTHPTLienHa/ajax/quanly/hocsinh/getListHocSinh.php'
+                    'url': '/QuanLyDiemTHPT/ajax/quanly/hocsinh/getListHocSinh.php'
                 },
                 pageLength: 50,
                 lengthMenu: [
@@ -461,7 +461,7 @@ require './../template/tpl_header.php';
                 var data = listDataTable.row($(this).parents('tr')).data();
                 if (confirm('Bạn có muốn xoá bản ghi này?')) {
                     $.ajax({
-                        url: '/QuanLyDiemTHPTLienHa/ajax/quanly/hocsinh/deleteHocSinh.php',
+                        url: '/QuanLyDiemTHPT/ajax/quanly/hocsinh/deleteHocSinh.php',
                         type: 'POST',
                         data: {
                             maHS: data['maHS']
@@ -500,7 +500,7 @@ require './../template/tpl_header.php';
                 var form = $(this);
                 var Data = form.serialize();
                 $.ajax({
-                    url: '/QuanLyDiemTHPTLienHa/ajax/quanly/hocsinh/editHocSinh.php',
+                    url: '/QuanLyDiemTHPT/ajax/quanly/hocsinh/editHocSinh.php',
                     type: 'POST',
                     data: Data,
                     success: function(result) {
@@ -541,7 +541,7 @@ require './../template/tpl_header.php';
                 var form = $(this);
                 var Data = form.serialize();
                 $.ajax({
-                    url: '/QuanLyDiemTHPTLienHa/ajax/quanly/hocsinh/addHocSinh.php',
+                    url: '/QuanLyDiemTHPT/ajax/quanly/hocsinh/addHocSinh.php',
                     type: 'POST',
                     data: Data,
                     success: function(result) {

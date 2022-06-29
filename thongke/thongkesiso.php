@@ -26,7 +26,7 @@ require './../template/tpl_header.php';
 					</div><!-- /.col -->
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
-							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPTLienHa">Trang chủ</a></li>
+							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
 							<li class="breadcrumb-item active"><?php echo $title; ?></li>
 						</ol>
 					</div><!-- /.col -->
@@ -98,14 +98,14 @@ require './../template/tpl_header.php';
 			var classFillData = null,
 				hocky = null;
 			$.ajax({
-				url: '/QuanLyDiemTHPTLienHa/ajax/quanly/lophoc/getInfo.php',
+				url: '/QuanLyDiemTHPT/ajax/quanly/lophoc/getInfo.php',
 				success: function(data) {
 					classFillData = data;
 
 				}
 			});
 			$.ajax({
-				url: '/QuanLyDiemTHPTLienHa/ajax/quanly/lophoc/getHocKy.php',
+				url: '/QuanLyDiemTHPT/ajax/quanly/lophoc/getHocKy.php',
 				success: function(data) {
 					hocky = data;
 
@@ -119,13 +119,13 @@ require './../template/tpl_header.php';
 				lengthChange: false,
 				serverMethod: 'post',
 				ajax: {
-					'url': '/QuanLyDiemTHPTLienHa/ajax/thongke/getSiSoLopHoc.php'
+					'url': '/QuanLyDiemTHPT/ajax/thongke/getSiSoLopHoc.php'
 				},
 				pageLength: -1,
 				'columns': [{
 						data: 'tenLop',
 						fnCreatedCell: function(nTd, sData, oData, iRow, iCol) {
-							$(nTd).html("<a href='/QuanLyDiemTHPTLienHa/quanly/hocsinhtronglop.php?maLop=" + oData.maLop + "'>" + oData.tenLop + "</a>");
+							$(nTd).html("<a href='/QuanLyDiemTHPT/quanly/hocsinhtronglop.php?maLop=" + oData.maLop + "'>" + oData.tenLop + "</a>");
 						}
 					},
 					{

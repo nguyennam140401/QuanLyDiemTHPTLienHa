@@ -40,7 +40,7 @@ if (!empty($_GET['maLop'])) {
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/QuanLyDiemTHPTLienHa">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
                             <li class="breadcrumb-item active"><?php echo $title; ?></li>
                         </ol>
                     </div><!-- /.col -->
@@ -114,13 +114,13 @@ if (!empty($_GET['maLop'])) {
         $(document).ready(function() {
             var listMonHoc = null;
             $.ajax({
-                url: '/QuanLyDiemTHPTLienHa/ajax/quanly/diem/getListMonHoc.php',
+                url: '/QuanLyDiemTHPT/ajax/quanly/diem/getListMonHoc.php',
                 success: function(data) {
                     listMonHoc = data;
                 }
             });
             $.ajax({
-                url: '/QuanLyDiemTHPTLienHa/ajax/tracuu/getHocKy.php',
+                url: '/QuanLyDiemTHPT/ajax/tracuu/getHocKy.php',
                 success: function(data) {
                     $.each(data, function(index, row) {
                         var active = '',
@@ -161,7 +161,7 @@ if (!empty($_GET['maLop'])) {
                 'serverSide': true,
                 'serverMethod': 'post',
                 'ajax': {
-                    'url': '/QuanLyDiemTHPTLienHa/ajax/tracuu/lophoc/getLopHoc.php?maLop=' + maLop + '&maHK=' + maHK
+                    'url': '/QuanLyDiemTHPT/ajax/tracuu/lophoc/getLopHoc.php?maLop=' + maLop + '&maHK=' + maHK
                 },
                 pageLength: 50,
                 'columns': [{
@@ -171,7 +171,7 @@ if (!empty($_GET['maLop'])) {
                     {
                         data: 'hocsinh.tenHS',
                         fnCreatedCell: function(nTd, sData, oData, iRow, iCol) {
-                            $(nTd).html("<a href='/QuanLyDiemTHPTLienHa/tracuu/diem.php?maHS=" + oData.hocsinh.maHS +
+                            $(nTd).html("<a href='/QuanLyDiemTHPT/tracuu/diem.php?maHS=" + oData.hocsinh.maHS +
                                 "'>" + oData.hocsinh.tenHS + "</a>");
                         }
                     },

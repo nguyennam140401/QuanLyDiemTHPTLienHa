@@ -29,11 +29,11 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
         setcookie('token', '', time() - (365 * 30 * 86400), "/");
         session_destroy();
         echo '<script>alert("Token hết hạn, vui lòng đăng nhập lại!");</script>';
-        header('Location: /QuanLyDiemTHPTLienHa/login.php');
+        header('Location: /QuanLyDiemTHPT/login.php');
         die();
     }
 } else {
-    header('Location: /QuanLyDiemTHPTLienHa/login.php');
+    header('Location: /QuanLyDiemTHPT/login.php');
     die();
 }
 ?>
@@ -76,7 +76,7 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="/QuanLyDiemTHPTLienHa/assets/images/logo-truong.png" alt="VNEDU" height="120" width="120">
+            <img class="animation__shake" src="/QuanLyDiemTHPT/assets/images/logo-truong.png" alt="VNEDU" height="120" width="120">
         </div>
 
         <!-- Navbar -->
@@ -91,7 +91,7 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/QuanLyDiemTHPTLienHa/logout.php" role="button">
+                    <a class="nav-link" href="/QuanLyDiemTHPT/logout.php" role="button">
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
                 </li>
@@ -109,8 +109,8 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="/QuanLyDiemTHPTLienHa" class="brand-link">
-                <img src="/QuanLyDiemTHPTLienHa/assets/images/logo-truong.png" alt="VNEDU" class="brand-image" style="opacity: .8">
+            <a href="/QuanLyDiemTHPT" class="brand-link">
+                <img src="/QuanLyDiemTHPT/assets/images/logo-truong.png" alt="VNEDU" class="brand-image" style="opacity: .8">
                 <span class="brand-text font-weight-light">VNEDU</span>
             </a>
 
@@ -121,7 +121,7 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="/QuanLyDiemTHPTLienHa/" class="nav-link">
+                            <a href="/QuanLyDiemTHPT/" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Hệ thống
@@ -131,14 +131,14 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
                             <ul class="nav nav-treeview">
                                 <?php if (in_array($taikhoan['role'], array('admin', 'manager'))) : ?>
                                     <li class="nav-item">
-                                        <a href="/QuanLyDiemTHPTLienHa/system/quanlytaikhoan.php" class="nav-link">
+                                        <a href="/QuanLyDiemTHPT/system/quanlytaikhoan.php" class="nav-link">
                                             <i class="fas fa-chevron-right nav-icon"></i>
                                             <p>Quản lý tài khoản</p>
                                         </a>
                                     </li>
                                 <?php endif; ?>
                                 <li class="nav-item">
-                                    <a href="/QuanLyDiemTHPTLienHa/system/thongtintaikhoan.php" class="nav-link">
+                                    <a href="/QuanLyDiemTHPT/system/thongtintaikhoan.php" class="nav-link">
                                         <i class="fas fa-chevron-right nav-icon"></i>
                                         <p>Thông tin tài khoản</p>
                                     </a>
@@ -147,7 +147,7 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
                         </li>
                         <?php if (in_array($taikhoan['role'], array('admin', 'manager', 'teacher'))) : ?>
                             <li class="nav-item">
-                                <a href="/QuanLyDiemTHPTLienHa/quanly/hocsinh.php" class="nav-link">
+                                <a href="/QuanLyDiemTHPT/quanly/hocsinh.php" class="nav-link">
                                     <i class="nav-icon fas fa-user-graduate"></i>
                                     <p>
                                         Quản lý học sinh
@@ -155,7 +155,7 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/QuanLyDiemTHPTLienHa/quanly/diem.php" class="nav-link">
+                                <a href="/QuanLyDiemTHPT/quanly/diem.php" class="nav-link">
                                     <i class="nav-icon fas fa-file-contract"></i>
                                     <p>
                                         Quản lý điểm
@@ -165,7 +165,7 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
                         <?php endif; ?>
                         <?php if (in_array($taikhoan['role'], array('admin', 'manager'))) : ?>
                             <li class="nav-item">
-                                <a href="/QuanLyDiemTHPTLienHa/quanly/giaovien.php" class="nav-link">
+                                <a href="/QuanLyDiemTHPT/quanly/giaovien/giaovien.php" class="nav-link">
                                     <i class="nav-icon fas fa-user-tie"></i>
                                     <p>
                                         Quản lý giáo viên
@@ -173,7 +173,7 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/QuanLyDiemTHPTLienHa/quanly/monhoc.php" class="nav-link">
+                                <a href="/QuanLyDiemTHPT/quanly/monhoc/monhoc.php" class="nav-link">
                                     <i class="nav-icon fas fa-award"></i>
                                     <p>
                                         Quản lý môn học
@@ -190,13 +190,13 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="/QuanLyDiemTHPTLienHa/quanly/lophoc.php" class="nav-link">
+                                        <a href="/QuanLyDiemTHPT/quanly/lophoc.php" class="nav-link">
                                             <i class="fas fa-chevron-right nav-icon"></i>
                                             <p>Quản lý lớp học</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="/QuanLyDiemTHPTLienHa/quanly/namhoc.php" class="nav-link">
+                                        <a href="/QuanLyDiemTHPT/quanly/namhoc/namhoc.php" class="nav-link">
                                             <i class="fas fa-chevron-right nav-icon"></i>
                                             <p>Học kỳ - Khối lớp - Năm học</p>
                                         </a>
@@ -204,7 +204,7 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="/QuanLyDiemTHPTLienHa/quanly/phanconggv.php" class="nav-link">
+                                <a href="/QuanLyDiemTHPT/quanly/phanconggv.php" class="nav-link">
                                     <i class="nav-icon fas fa-file-contract"></i>
                                     <p>
                                         Phân công công việc
@@ -221,13 +221,13 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="/QuanLyDiemTHPTLienHa/thongke/thongkesiso.php" class="nav-link">
+                                        <a href="/QuanLyDiemTHPT/thongke/thongkesiso.php" class="nav-link">
                                             <i class="fas fa-chevron-right nav-icon"></i>
                                             <p>Thống kê sĩ số lớp</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="/QuanLyDiemTHPTLienHa/thongke/thongkediem.php" class="nav-link">
+                                        <a href="/QuanLyDiemTHPT/thongke/thongkediem.php" class="nav-link">
                                             <i class="fas fa-chevron-right nav-icon"></i>
                                             <p>Thống kê điểm học sinh</p>
                                         </a>
@@ -245,13 +245,13 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/QuanLyDiemTHPTLienHa/tracuu/lophoc.php" class="nav-link">
+                                    <a href="/QuanLyDiemTHPT/tracuu/lophoc.php" class="nav-link">
                                         <i class="fas fa-chevron-right nav-icon"></i>
                                         <p>Tra cứu lớp học</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/QuanLyDiemTHPTLienHa/tracuu/diem.php" class="nav-link">
+                                    <a href="/QuanLyDiemTHPT/tracuu/diem.php" class="nav-link">
                                         <i class="fas fa-chevron-right nav-icon"></i>
                                         <p>Tra cứu điểm</p>
                                     </a>

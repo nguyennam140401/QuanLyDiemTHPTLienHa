@@ -3,7 +3,7 @@ session_start();
 ob_start();
 
 if ((!empty($_SESSION['username']) && !empty($_SESSION['password'])) || (!empty($_COOKIE['username']) && !empty($_COOKIE['token']))) {
-	header('Location: /QuanLyDiemTHPTLienHa/');
+	header('Location: /QuanLyDiemTHPT/');
 }
 
 $title = 'Đăng nhập';
@@ -47,7 +47,7 @@ $title = 'Đăng nhập';
 		<!-- /.login-logo -->
 		<div class="card card-outline card-primary">
 			<div class="card-header text-center">
-				<a href="/QuanLyDiemTHPTLienHa" class="h1"><i class="fas fa-graduation-cap"></i> <b>VN</b>EDU</a>
+				<a href="/QuanLyDiemTHPT" class="h1"><i class="fas fa-graduation-cap"></i> <b>VN</b>EDU</a>
 			</div>
 			<div class="card-body">
 				<p class="login-box-msg">Đăng ký tài khoản mới</em></p>
@@ -105,7 +105,7 @@ $title = 'Đăng nhập';
 			<!-- /.card-body -->
 			<div class="card-footer">
 				<p class="mt-1 mb-1">
-					<a href="/QuanLyDiemTHPTLienHa/login.php">Tôi đã có tài khoản?</a>
+					<a href="/QuanLyDiemTHPT/login.php">Tôi đã có tài khoản?</a>
 				</p>
 			</div>
 		</div>
@@ -127,7 +127,7 @@ $title = 'Đăng nhập';
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
-					url: '/QuanLyDiemTHPTLienHa/ajax/login/regis.php',
+					url: '/QuanLyDiemTHPT/ajax/login/regis.php',
 					type: 'POST',
 					data: Data,
 					success: function(result) {

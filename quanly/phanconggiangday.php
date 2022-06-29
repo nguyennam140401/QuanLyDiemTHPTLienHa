@@ -64,7 +64,7 @@ if (!empty($_GET['maLop'])) {
 					</div><!-- /.col -->
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
-							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPTLienHa">Trang chủ</a></li>
+							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
 							<li class="breadcrumb-item active"><?php echo $title; ?></li>
 						</ol>
 					</div><!-- /.col -->
@@ -249,7 +249,7 @@ if (!empty($_GET['maLop'])) {
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
-					url: '/QuanLyDiemTHPTLienHa/ajax/quanly/phancong/addphanconggiangday.php',
+					url: '/QuanLyDiemTHPT/ajax/quanly/phancong/addphanconggiangday.php',
 					type: 'POST',
 					data: Data,
 					success: function(result) {
@@ -290,7 +290,7 @@ if (!empty($_GET['maLop'])) {
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
-					url: '/QuanLyDiemTHPTLienHa/ajax/quanly/phancong/editphanconggiangday.php',
+					url: '/QuanLyDiemTHPT/ajax/quanly/phancong/editphanconggiangday.php',
 					type: 'POST',
 					data: Data,
 					success: function(result) {
@@ -331,7 +331,7 @@ if (!empty($_GET['maLop'])) {
 				'serverSide': true,
 				'serverMethod': 'post',
 				'ajax': {
-					'url': '/QuanLyDiemTHPTLienHa/ajax/quanly/giaovien/getListGiaoVien.php'
+					'url': '/QuanLyDiemTHPT/ajax/quanly/giaovien/getListGiaoVien.php'
 				},
 				pageLength: 10,
 				'columns': [{
@@ -382,7 +382,7 @@ if (!empty($_GET['maLop'])) {
 				'serverSide': true,
 				'serverMethod': 'post',
 				'ajax': {
-					'url': '/QuanLyDiemTHPTLienHa/ajax/quanly/giaovien/getListGiaoVien.php'
+					'url': '/QuanLyDiemTHPT/ajax/quanly/giaovien/getListGiaoVien.php'
 				},
 				pageLength: 10,
 				'columns': [{

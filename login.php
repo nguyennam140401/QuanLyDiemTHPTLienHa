@@ -56,7 +56,7 @@ $title = 'Đăng nhập';
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="/QuanLyDiemTHPTLienHa" class="h1"><i class="fas fa-graduation-cap"></i> <b>VN</b>EDU</a>
+                <a href="/QuanLyDiemTHPT" class="h1"><i class="fas fa-graduation-cap"></i> <b>VN</b>EDU</a>
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Hệ thống quản lý điểm <em>Trường THPT Liên Hà</em></p>
@@ -133,7 +133,7 @@ $title = 'Đăng nhập';
             var form = $(this);
             var Data = form.serialize();
             $.ajax({
-                url: '/QuanLyDiemTHPTLienHa/ajax/login/auth.php',
+                url: '/QuanLyDiemTHPT/ajax/login/auth.php',
                 type: 'POST',
                 data: Data,
                 success: function(result) {

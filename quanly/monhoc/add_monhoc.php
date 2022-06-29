@@ -1,110 +1,69 @@
 <?php
-$title = 'Quản lý môn học';
-require './../template/tpl_header.php';
-
+$title = 'Thêm môn học mới';
+require '../../template/tpl_header.php';
 ?>
 
 <?php if (in_array($taikhoan['role'], array('admin', 'manager'))) : ?>
+	<style>
+		.toasts-top-right {
+			z-index: 1060 !important;
+		}
+	</style>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css" integrity="sha512-PT0RvABaDhDQugEbpNMwgYBCnGCiTZMh9yOzUsJHDgl/dMhD9yjHAwoumnUk3JydV3QTcIkNDuN40CJxik5+WQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!-- Content Wrapper. Contains page content -->
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0"><?php echo $title; ?></h1>
+					</div><!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
+							<li class="breadcrumb-item active"><?php echo $title; ?></li>
+						</ol>
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div><!-- /.container-fluid -->
+		</div>
+		<!-- /.content-header -->
 
-
-<style>
-.toasts-top-right {
-    z-index: 1060 !important;
-}
-</style>
-<link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css"
-    integrity="sha512-PT0RvABaDhDQugEbpNMwgYBCnGCiTZMh9yOzUsJHDgl/dMhD9yjHAwoumnUk3JydV3QTcIkNDuN40CJxik5+WQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0"><?php echo $title; ?></h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/QuanLyDiemTHPTLienHa">Trang chủ</a></li>
-                        <li class="breadcrumb-item active"><?php echo $title; ?></li>
-                    </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        <i class="far fa-user"></i>
-                        Danh sách môn học
-                    </h3>
-                    <input type="search" placeholder="Nhập tên môn học muốn tìm" id="search">
-                    <button type="button" class="btn btn-default btn-sm float-right p-0"
-                        onclick="$('#ModalAdd').modal({show: true});"><i class="fas fa-plus-circle"></i> Thêm
-                        mới</button>
-                </div>
-                <div class="card-body">
-                    <table class="table table-striped projects" width="100%">
-                        <thead class="table-header">
-                            <tr>
-                                <th>#</th>
-                                <th>Tên môn</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="MonHocTable">
-
-                        </tbody>
-                    </table>
-
-                    <div class="d-flex justify-content-between align-items-center mt-3">
-                        <div class="d-flex align-items-center">
-                            <div class="text-secondary">
-
-                                Các hàng tên mỗi trang: <select name="length" id="length" class="custom-select w-25">
-                                    <option value="5" selected>5</option>
-                                    <option value="10">10</option>
-                                    <option value="20">20</option>
-                                </select>
-                            </div>
-                            <div class="text-secondary mx-3"> <span id="start">1</span> đến <span id="end">5</span> của
-                                <span id="total">100</span>
-                            </div>
-                        </div>
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination" id="pagination" attr-value="1">
-
-                            </ul>
-                        </nav>
-
-                    </div>
-                </div>
-                <!-- /.card -->
-            </div>
-        </div>
-    </section>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"
-    integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"
-    integrity="sha512-OQlawZneA7zzfI6B1n1tjUuo3C5mtYuAWpQdg+iI9mkDoo7iFzTqnQHf+K5ThOWNJ9AbXL4+ZDwH7ykySPQc+A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<!-- Main content -->
+		<section class="content">
+			<div class="container-fluid">
+				<div class="card card-info">
+					<div class="card-header">
+						<h3 class="card-title">
+							<i class="far fa-user"></i>
+							Thêm mới môn học
+						</h3>
+					</div>
+					<div class="card-body">
+						<form action="process_add_monhoc.php" method="post" enctype="multipart/form" class="form col-md-6">
+							<div class="form-group">
+								<label for="nameMonHoc">Tên môn học</label>
+								<input type="text" class="form-control" id="nameMonHoc" name="name">
+							</div>
+							<button type="submit" class="btn btn-primary">Thêm mới</button>
+						</form>
+					</div>
+					<!-- /.card -->
+				</div>
+			</div>
+		</section>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js" integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js" integrity="sha512-OQlawZneA7zzfI6B1n1tjUuo3C5mtYuAWpQdg+iI9mkDoo7iFzTqnQHf+K5ThOWNJ9AbXL4+ZDwH7ykySPQc+A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
 
 
 
-<!-- MODAL CHO Edit -->
+	<!-- MODAL CHO Edit -->
 
-<div id="ModalEdit" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel2" aria-hidden="true">
+	<div id="ModalEdit" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel2" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -130,9 +89,9 @@ require './../template/tpl_header.php';
 
 
 
-<!-- TMODAL CHO Add -->
+	<!-- TMODAL CHO Add -->
 
-<div id="ModalAdd" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel2" aria-hidden="true">
+	<div id="ModalAdd" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel2" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -161,7 +120,7 @@ require './../template/tpl_header.php';
 				'serverSide': true,
 				'serverMethod': 'post',
 				'ajax': {
-					'url': '/QuanLyDiemTHPTLienHa/ajax/quanly/monhoc/getMonHoc.php'
+					'url': '/QuanLyDiemTHPT/ajax/quanly/monhoc/getMonHoc.php'
 				},
 				pageLength: 10,
 				'columns': [{
@@ -204,7 +163,7 @@ require './../template/tpl_header.php';
 				var data = listDataTable.row($(this).parents('tr')).data();
 				if (confirm('Bạn có muốn xoá bản ghi này?')) {
 					$.ajax({
-						url: '/QuanLyDiemTHPTLienHa/ajax/quanly/monhoc/deleteMonHoc.php',
+						url: '/QuanLyDiemTHPT/ajax/quanly/monhoc/deleteMonHoc.php',
 						type: 'POST',
 						data: {
 							maMH: data['maMH']
@@ -238,11 +197,12 @@ require './../template/tpl_header.php';
 			// Submit form sửa
 			$("#EditForm").submit(function(event) {
 				event.preventDefault();
-				$("#EditSubmit").attr("disabled", true).html('<i class="fas fa-spinner fa-spin"></i> Lưu thông tin');
+				$("#EditSubmit").attr("disabled", true).html(
+					'<i class="fas fa-spinner fa-spin"></i> Lưu thông tin');
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
-					url: '/QuanLyDiemTHPTLienHa/ajax/quanly/monhoc/editMonHoc.php',
+					url: '/QuanLyDiemTHPT/ajax/quanly/monhoc/editMonHoc.php',
 					type: 'POST',
 					data: Data,
 					success: function(result) {
@@ -278,11 +238,12 @@ require './../template/tpl_header.php';
 			// Submit form thêm
 			$("#AddForm").submit(function(event) {
 				event.preventDefault();
-				$("#AddSubmit").attr("disabled", true).html('<i class="fas fa-spinner fa-spin"></i> Lưu thông tin');
+				$("#AddSubmit").attr("disabled", true).html(
+					'<i class="fas fa-spinner fa-spin"></i> Lưu thông tin');
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
-					url: '/QuanLyDiemTHPTLienHa/ajax/quanly/monhoc/addMonHoc.php',
+					url: '/QuanLyDiemTHPT/ajax/quanly/monhoc/addMonHoc.php',
 					type: 'POST',
 					data: Data,
 					success: function(result) {
@@ -324,5 +285,5 @@ require './../template/tpl_header.php';
 
 <?php endif; ?>
 <?php
-require './../template/tpl_footer.php';
+require '../../template/tpl_footer.php';
 ?>

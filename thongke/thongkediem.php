@@ -32,7 +32,7 @@ if (!empty($_GET['maLop'])) {
 					</div><!-- /.col -->
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
-							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPTLienHa">Trang chủ</a></li>
+							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
 							<li class="breadcrumb-item active"><?php echo $title; ?></li>
 						</ol>
 					</div><!-- /.col -->
@@ -125,7 +125,7 @@ if (!empty($_GET['maLop'])) {
 				serverMethod: 'post',
 				ordering: false,
 				'ajax': {
-					'url': '/QuanLyDiemTHPTLienHa/ajax/thongke/getDiemLopHoc.php?maLop=<?php echo $maLop; ?>'
+					'url': '/QuanLyDiemTHPT/ajax/thongke/getDiemLopHoc.php?maLop=<?php echo $maLop; ?>'
 				},
 				pageLength: 50,
 				'columns': [{
@@ -134,7 +134,7 @@ if (!empty($_GET['maLop'])) {
 					{
 						data: 'hocsinh.tenHS',
 						fnCreatedCell: function(nTd, sData, oData, iRow, iCol) {
-							$(nTd).html("<a href='/QuanLyDiemTHPTLienHa/tracuu/diem.php?maHS=" + oData.hocsinh.maHS + "'>" +
+							$(nTd).html("<a href='/QuanLyDiemTHPT/tracuu/diem.php?maHS=" + oData.hocsinh.maHS + "'>" +
 								oData.hocsinh.tenHS + "</a>");
 						}
 					},
@@ -223,7 +223,7 @@ if (!empty($_GET['maLop'])) {
 					</div><!-- /.col -->
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
-							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPTLienHa">Trang chủ</a></li>
+							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
 							<li class="breadcrumb-item active"><?php echo $title; ?></li>
 						</ol>
 					</div><!-- /.col -->
@@ -273,7 +273,7 @@ if (!empty($_GET['maLop'])) {
 
 			var classFillData = null;
 			$.ajax({
-				url: '/QuanLyDiemTHPTLienHa/ajax/quanly/lophoc/getInfo.php',
+				url: '/QuanLyDiemTHPT/ajax/quanly/lophoc/getInfo.php',
 				success: function(data) {
 					classFillData = data;
 				}
@@ -283,7 +283,7 @@ if (!empty($_GET['maLop'])) {
 				serverSide: true,
 				serverMethod: 'post',
 				ajax: {
-					'url': '/QuanLyDiemTHPTLienHa/ajax/tracuu/lophoc/getListLopHoc.php'
+					'url': '/QuanLyDiemTHPT/ajax/tracuu/lophoc/getListLopHoc.php'
 				},
 				pageLength: 10,
 
@@ -300,7 +300,7 @@ if (!empty($_GET['maLop'])) {
 					{
 						data: 'tenLop',
 						fnCreatedCell: function(nTd, sData, oData, iRow, iCol) {
-							$(nTd).html("<a href='/QuanLyDiemTHPTLienHa/thongke/thongkediem.php?maLop=" +
+							$(nTd).html("<a href='/QuanLyDiemTHPT/thongke/thongkediem.php?maLop=" +
 								oData.maLop + "'>" + oData.tenLop + "</a>");
 						}
 					},

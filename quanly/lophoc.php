@@ -26,7 +26,7 @@ require './../template/tpl_header.php';
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/QuanLyDiemTHPTLienHa">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
                             <li class="breadcrumb-item active"><?php echo $title; ?></li>
                         </ol>
                     </div><!-- /.col -->
@@ -210,7 +210,7 @@ require './../template/tpl_header.php';
         $(document).ready(function() {
             var classFillData = null;
             $.ajax({
-                url: '/QuanLyDiemTHPTLienHa/ajax/quanly/lophoc/getInfo.php',
+                url: '/QuanLyDiemTHPT/ajax/quanly/lophoc/getInfo.php',
                 success: function(data) {
                     classFillData = data;
 
@@ -244,7 +244,7 @@ require './../template/tpl_header.php';
                 serverSide: true,
                 serverMethod: 'post',
                 ajax: {
-                    'url': '/QuanLyDiemTHPTLienHa/ajax/quanly/lophoc/getLopHoc.php'
+                    'url': '/QuanLyDiemTHPT/ajax/quanly/lophoc/getLopHoc.php'
                 },
                 pageLength: 50,
                 'columns': [{
@@ -260,7 +260,7 @@ require './../template/tpl_header.php';
                     {
                         data: 'tenLop',
                         fnCreatedCell: function(nTd, sData, oData, iRow, iCol) {
-                            $(nTd).html("<a href='/QuanLyDiemTHPTLienHa/quanly/hocsinhtronglop.php?maLop=" +
+                            $(nTd).html("<a href='/QuanLyDiemTHPT/quanly/hocsinhtronglop.php?maLop=" +
                                 oData.maLop + "'>" + oData.tenLop + "</a>");
                         }
                     },
@@ -386,7 +386,7 @@ require './../template/tpl_header.php';
                 var data = listDataTable.row($(this).parents('tr')).data();
                 if (confirm('Bạn có muốn xoá bản ghi này?')) {
                     $.ajax({
-                        url: '/QuanLyDiemTHPTLienHa/ajax/quanly/lophoc/deleteLopHoc.php',
+                        url: '/QuanLyDiemTHPT/ajax/quanly/lophoc/deleteLopHoc.php',
                         type: 'POST',
                         data: {
                             maLop: data['maLop']
@@ -425,7 +425,7 @@ require './../template/tpl_header.php';
                 var form = $(this);
                 var Data = form.serialize();
                 $.ajax({
-                    url: '/QuanLyDiemTHPTLienHa/ajax/quanly/lophoc/editLopHoc.php',
+                    url: '/QuanLyDiemTHPT/ajax/quanly/lophoc/editLopHoc.php',
                     type: 'POST',
                     data: Data,
                     success: function(result) {
@@ -466,7 +466,7 @@ require './../template/tpl_header.php';
                 var form = $(this);
                 var Data = form.serialize();
                 $.ajax({
-                    url: '/QuanLyDiemTHPTLienHa/ajax/quanly/lophoc/addLopHoc.php',
+                    url: '/QuanLyDiemTHPT/ajax/quanly/lophoc/addLopHoc.php',
                     type: 'POST',
                     data: Data,
                     success: function(result) {

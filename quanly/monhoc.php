@@ -24,7 +24,7 @@ require './../template/tpl_header.php';
 					</div><!-- /.col -->
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
-							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPTLienHa">Trang chủ</a></li>
+							<li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
 							<li class="breadcrumb-item active"><?php echo $title; ?></li>
 						</ol>
 					</div><!-- /.col -->
@@ -127,7 +127,7 @@ require './../template/tpl_header.php';
 				'serverSide': true,
 				'serverMethod': 'post',
 				'ajax': {
-					'url': '/QuanLyDiemTHPTLienHa/ajax/quanly/monhoc/getMonHoc.php'
+					'url': '/QuanLyDiemTHPT/ajax/quanly/monhoc/getMonHoc.php'
 				},
 				pageLength: 10,
 				'columns': [{
@@ -170,7 +170,7 @@ require './../template/tpl_header.php';
 				var data = listDataTable.row($(this).parents('tr')).data();
 				if (confirm('Bạn có muốn xoá bản ghi này?')) {
 					$.ajax({
-						url: '/QuanLyDiemTHPTLienHa/ajax/quanly/monhoc/deleteMonHoc.php',
+						url: '/QuanLyDiemTHPT/ajax/quanly/monhoc/deleteMonHoc.php',
 						type: 'POST',
 						data: {
 							maMH: data['maMH']
@@ -208,7 +208,7 @@ require './../template/tpl_header.php';
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
-					url: '/QuanLyDiemTHPTLienHa/ajax/quanly/monhoc/editMonHoc.php',
+					url: '/QuanLyDiemTHPT/ajax/quanly/monhoc/editMonHoc.php',
 					type: 'POST',
 					data: Data,
 					success: function(result) {
@@ -248,7 +248,7 @@ require './../template/tpl_header.php';
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
-					url: '/QuanLyDiemTHPTLienHa/ajax/quanly/monhoc/addMonHoc.php',
+					url: '/QuanLyDiemTHPT/ajax/quanly/monhoc/addMonHoc.php',
 					type: 'POST',
 					data: Data,
 					success: function(result) {
