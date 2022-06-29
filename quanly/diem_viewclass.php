@@ -91,13 +91,13 @@ if (!empty($_GET['maLop'])) {
             <div class="card card-default">
                 <div class="card-header p-0 pt-1 border-bottom-0">
                     <ul class="nav nav-tabs" id="HocKyTab" role="tablist">
-
                     </ul>
+                    <button type="button" class="btn btn-warning btn-flat float-right" onclick="AddHocSinh()"><i
+                            class="fas fa-plus-circle"></i> Thêm mới</button>
                 </div>
                 <div class="card-body">
                     <div class="tab-content" id="HocKyTabContent">
                     </div>
-
                 </div>
                 <!-- /.card -->
             </div>
@@ -108,7 +108,7 @@ if (!empty($_GET['maLop'])) {
 
 <div id="AddHocSinhModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
     aria-labelledby="myExtraLargeModalLabel2" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-info">
                 <strong>Thêm học sinh vào lớp </strong>
@@ -119,25 +119,11 @@ if (!empty($_GET['maLop'])) {
                 <form id="AddHocSinhForm" action="#" method="post">
                     <input type="hidden" name="maLop" value="<?php echo $classInfo['maLop']; ?>" required />
                     <div class="row">
-                        <div class="col-xl-8">
-                            <table class="table table-bordered table-striped" id="DanhSachHocSinh" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th width="1%">Mã</th>
-                                        <th>Tên học sinh</th>
-                                        <th>Ngày sinh</th>
-                                        <th>Giới tính</th>
-                                        <th>Nơi sinh</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-12">
                             <div class="form-group">
                                 <label for="maHS">Chọn học sinh</label>
                                 <select name="maHS" id="maHS" class="form-control" required>
                                 </select>
-                                <small class="form-text text-muted text-alert">* Chọn từ danh sách bên cạnh</small>
                             </div>
                             <div class="form-group">
                                 <label for="maHK">Chọn học kỳ</label>
@@ -257,9 +243,18 @@ $(document).ready(function() {
                     '"> <div class="row"><div class="col-sm-12 p-1">' + MonHocButton(
                         listMonHoc, <?php echo $maLop; ?>, row.maHK) +
                     '</div><div class="col-sm-12"><table class="table table-bordered table-striped" id="LopHocTable' +
-                    index + '" width="100%">' + $('#HocSinhTemplate').html() +
+                    index + '" width="100%">' + `<thead>
+		<tr>
+			<th width="20%">Mã học sinh</th>
+			<th>Tên học sinh</th>
+			<th>Ngày sinh</th>
+			<th>Giới tính</th>
+			<th>Nơi sinh</th>
+		</tr>
+	</thead>
+    <tbody></tbody>` +
                     '</table></div></div></div>');
-                FillTableLopHoc(index, <?php echo $maLop; ?>, row.maHK);
+                fillToLop(index, <?php echo $maLop; ?>, row.maHK);
             });
         }
     });
@@ -269,7 +264,25 @@ $(document).ready(function() {
 });
 
 
-
+function fillToLop(tableindex, maLop, maHK) {
+    $.ajax({
+        url: '/QuanLyDiemTHPT/ajax/tracuu/lophoc/getLopHoc.php?maLop=' + maLop + '&maHK=' + maHK +
+            '&length=100',
+        success: function(data) {
+            console.log(data)
+            data.aaData.forEach((item, idx) => {
+                $(`#LopHocTable${tableindex} tbody`).append(
+                    `<tr role="row" class="odd">
+                            <td class="sorting_1">${item.hocsinh.maHS}</td>
+                            <td><a href="/QuanLyDiemTHPT/tracuu/diem.php?maHS=${item.hocsinh.maHS}">${item.hocsinh.tenHS}</a></td>
+                            <td>${item.hocsinh.ngaySinh}</td>
+                            <td>${item.hocsinh.gioiTinh==0?'Nam':'Nữ'}</td>
+                            <td>${item.hocsinh.noiSinh}</td>
+                            </tr>`)
+            })
+        }
+    });
+}
 
 function FillTableLopHoc(tableindex, maLop, maHK) {
     var dataTable = $('#LopHocTable' + tableindex).DataTable({
@@ -317,8 +330,6 @@ function FillTableLopHoc(tableindex, maLop, maHK) {
         initComplete: function() {
             $('#LopHocTable' + tableindex + '_length').css('display', 'inline-block');
             $('#LopHocTable' + tableindex + '_length').css('padding-left', '15px');
-
-
         }
 
     });
@@ -389,6 +400,106 @@ $("#EditTeacherForm").submit(function(event) {
     });
     return false;
 });
+// Hiện model thêm HS vô lớp
+function AddHocSinh() {
+
+    $("#AddHocSinhModal").modal({
+        show: true
+    });
+
+
+
+}
+// Submit form thêm lớp
+$("#AddHocSinhForm").submit(function(event) {
+    event.preventDefault();
+    $("#AddHocSinhSubmit").attr("disabled", true).html('<i class="fas fa-spinner fa-spin"></i> Lưu thông tin');
+    var form = $(this);
+    var Data = form.serialize();
+    $.ajax({
+        url: '/QuanLyDiemTHPT/ajax/quanly/lophoc/themHocSinhvaoLop.php',
+        type: 'POST',
+        data: Data,
+        success: function(result) {
+            if (result.success) {
+                $(document).Toasts('create', {
+                    class: 'bg-success',
+                    title: 'Thành công!',
+                    body: result.success
+                });
+                setTimeout(function() {
+                    window.location.reload();
+                }, 2000);
+            } else {
+                $.each(result.error, function(id, errorMessage) {
+                    $(document).Toasts('create', {
+                        class: 'bg-danger',
+                        title: 'Có lỗi xảy ra!',
+                        body: errorMessage
+                    });
+                });
+
+                $("#AddHocSinhSubmit").attr("disabled", false).html('Lưu thông tin');
+            }
+
+        },
+        error: function(xhr, status, error) {
+            alert(error);
+            $("#AddHocSinhSubmit").attr("disabled", false).html('Lưu thông tin');
+        }
+    });
+    return false;
+});
+
+function getListHocSinh() {
+    $.ajax({
+        url: `/QuanLyDiemTHPT/ajax/quanly/lophoc/getHocSinh.php`,
+        dataType: "json",
+        type: "POST",
+        async: true,
+        data: {
+            length: 9999
+        },
+        success: function(data) {
+
+            $('#maHS').empty()
+            data.aaData.forEach(hocsinh => {
+
+                $('#maHS').append('<option value="' + hocsinh.maHS + '">' + hocsinh.tenHS +
+                    '</option>');
+            })
+        },
+        error: function(xhr, exception) {
+            var msg = "";
+            if (xhr.status === 0) {
+                msg = "Not connect.\n Verify Network." + xhr.responseText;
+            } else if (xhr.status == 404) {
+                msg = "Requested page not found. [404]" + xhr.responseText;
+            } else if (xhr.status == 500) {
+                msg = "Internal Server Error [500]." + xhr.responseText;
+            } else if (exception === "parsererror") {
+                msg = "Requested JSON parse failed.";
+            } else if (exception === "timeout") {
+                msg = "Time out error." + xhr.responseText;
+            } else if (exception === "abort") {
+                msg = "Ajax request aborted.";
+            } else {
+                msg = "Error:" + xhr.status + " " + xhr.responseText;
+            }
+            alert(msg)
+        }
+    });
+}
+getListHocSinh()
+$.ajax({
+    url: '/QuanLyDiemTHPT/ajax/quanly/lophoc/getHocKy.php',
+    success: function(data) {
+        $('#maHK').html('');
+        $.each(data, function(index, row) {
+            $('#maHK').append('<option value="' + row.maHK + '">' + row.tenHK + '</option>');
+        });
+    }
+});
 </script>
 
 <script type="text/template" id="HocSinhTemplate">
@@ -401,15 +512,8 @@ $("#EditTeacherForm").submit(function(event) {
 			<th>Nơi sinh</th>
 		</tr>
 	</thead>
-	<tfoot>
-		<tr>
-			<th>#</th>
-			<th>Tên học sinh</th>
-			<th>Ngày sinh</th>
-			<th>Giới tính</th>
-			<th>Nơi sinh</th>
-		</tr>
-	</tfoot>
+    <tbody></tbody>
+	
 </script>
 
 

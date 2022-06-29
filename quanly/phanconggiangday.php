@@ -6,39 +6,38 @@ $maLop = null;
 $queryLop = null;
 $classInfo = array();
 if (!empty($_GET['maLop'])) {
-	$maLop = (int)htmlspecialchars($_GET['maLop']);
-	$queryLop = $mysqli->query('SELECT `maLop`, `tenLop`, `tenKhoiLop`, `namHoc`, `tenGV` FROM `lop` INNER JOIN `khoilop` ON `lop`.`maKhoiLop` = `khoilop`.`maKhoiLop` INNER JOIN `giaovien` ON `lop`.`maGV` = `giaovien`.`maGV` INNER JOIN `namhoc` ON `lop`.`maNH` = `namhoc`.`maNH`  WHERE `maLop`=' . $maLop . ';');
-	if ($queryLop->num_rows > 0) {
-		$classInfo = $queryLop->fetch_array(MYSQLI_ASSOC);
-	}
+    $maLop = (int)htmlspecialchars($_GET['maLop']);
+    $queryLop = $mysqli->query('SELECT `maLop`, `tenLop`, `tenKhoiLop`, `namHoc`, `tenGV` FROM `lop` INNER JOIN `khoilop` ON `lop`.`maKhoiLop` = `khoilop`.`maKhoiLop` INNER JOIN `giaovien` ON `lop`.`maGV` = `giaovien`.`maGV` INNER JOIN `namhoc` ON `lop`.`maNH` = `namhoc`.`maNH`  WHERE `maLop`=' . $maLop . ';');
+    if ($queryLop->num_rows > 0) {
+        $classInfo = $queryLop->fetch_array(MYSQLI_ASSOC);
+    }
 }
 //print_r($classInfo);
 ?>
 
 <?php if (
-	!empty($maLop) && isset($queryLop->num_rows) && $queryLop->num_rows > 0  &&
-	in_array($taikhoan['role'], array('admin', 'manager'))
+    !empty($maLop) && isset($queryLop->num_rows) && $queryLop->num_rows > 0  &&
+    in_array($taikhoan['role'], array('admin', 'manager'))
 ) :
 
-
-	$table = '';
-	// Lấy môn học
-	$monhocQuery = $mysqli->query('SELECT * FROM `monhoc`;');
-	if ($monhocQuery->num_rows > 0) {
-		// Lay gioa vien day mon do
-		while ($mon = $monhocQuery->fetch_array(MYSQLI_ASSOC)) {
-			$table_row = '';
-			$phancongQuery = $mysqli->query('SELECT * FROM `phanconggiaovien` INNER JOIN `giaovien` ON `phanconggiaovien`.`maGV` = `giaovien`.`maGV` WHERE `maLop`= ' . $maLop . ' AND `maMH` = ' . $mon['maMH'] . ';');
-			if ($phancongQuery->num_rows > 0) {
-				$gv = $phancongQuery->fetch_array(MYSQLI_ASSOC);
-				$table_row = '<td>' . $mon['tenMH'] . '</td><td>' . $gv['tenGV'] . '</td><td><a class="btn btn-primary btn-sm float-right" href="#" onclick="DoiGiaoVien(\'' . $gv['id'] . '\', \'' . $mon['tenMH'] . '\', \'' . $gv['maGV'] . '\', \'' . $gv['tenGV'] . '\')"><i class="fas fa-user-edit"></i>Đổi giáo viên</a></td>';
-			} else {
-				$table_row = '<td>' . $mon['tenMH'] . '</td><td><span class="badge bg-gray">Chưa phân công</span></td><td><a class="btn btn-info btn-sm float-right" href="#" onclick="PhanCongGiaoVien(\'' . $mon['maMH'] . '\', \'' . $mon['tenMH'] . '\')"><i class="fas fa-user-edit"></i>Phân công giáo viên</a></td>';
-			}
-			$table_row = '<tr>' . $table_row . '</tr>';
-			$table .= $table_row;
-		}
-	}
+    $table = '';
+    // Lấy môn học
+    $monhocQuery = $mysqli->query('SELECT * FROM `monhoc`;');
+    if ($monhocQuery->num_rows > 0) {
+        // Lay gioa vien day mon do
+        while ($mon = $monhocQuery->fetch_array(MYSQLI_ASSOC)) {
+            $table_row = '';
+            $phancongQuery = $mysqli->query('SELECT * FROM `phanconggiaovien` INNER JOIN `giaovien` ON `phanconggiaovien`.`maGV` = `giaovien`.`maGV` WHERE `maLop`= ' . $maLop . ' AND `maMH` = ' . $mon['maMH'] . ';');
+            if ($phancongQuery->num_rows > 0) {
+                $gv = $phancongQuery->fetch_array(MYSQLI_ASSOC);
+                $table_row = '<td>' . $mon['tenMH'] . '</td><td>' . $gv['tenGV'] . '</td><td><a class="btn btn-primary btn-sm float-right" href="#" onclick="DoiGiaoVien(\'' . $gv['id'] . '\', \'' . $mon['tenMH'] . '\', \'' . $gv['maGV'] . '\', \'' . $gv['tenGV'] . '\')"><i class="fas fa-user-edit"></i>Đổi giáo viên</a></td>';
+            } else {
+                $table_row = '<td>' . $mon['tenMH'] . '</td><td><span class="badge bg-gray">Chưa phân công</span></td><td><a class="btn btn-info btn-sm float-right" href="#" onclick="PhanCongGiaoVien(\'' . $mon['maMH'] . '\', \'' . $mon['tenMH'] . '\')"><i class="fas fa-user-edit"></i>Phân công giáo viên</a></td>';
+            }
+            $table_row = '<tr>' . $table_row . '</tr>';
+            $table .= $table_row;
+        }
+    }
 
 
 
