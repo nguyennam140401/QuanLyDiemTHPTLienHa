@@ -48,27 +48,36 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="vuiz.net">
     <meta property="og:title" content="Hệ thống quản lý điểm trường THPT Liên Hà" />
-    <meta property="og:image" content="/assets/images/logo-truong.png" />
+    <meta property="og:image" content="/assets/images/logo.png" />
     <meta property="og:site_name" content="THPTLH" />
     <meta property="og:description" content="Hệ thống quản lý điểm trường THPT Liên Hà" />
-    <meta property="og:url" content="https://vnedu.vuiz.net" />
+
     <!-- Favicon -->
-    <link href="/assets/images/favicon.png" rel="icon" type="image/png">
-    <link href="/assets/images/favicon.png" rel="shortcut icon" type="image/png">
+    <link href="/assets/images/logo.png" rel="icon" type="image/png">
+    <link href="/assets/images/logo.png" rel="shortcut icon" type="image/png">
 
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Theme style -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css" integrity="sha512-mxrUXSjrxl8vm5GwafxcqTrEwO1/oBNU25l20GODsysHReZo4uhVISzAKzaABH6/tTfAxZrY2FprmeAP5UZY8A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css"
+        integrity="sha512-mxrUXSjrxl8vm5GwafxcqTrEwO1/oBNU25l20GODsysHReZo4uhVISzAKzaABH6/tTfAxZrY2FprmeAP5UZY8A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css" integrity="sha512-8vq2g5nHE062j3xor4XxPeZiPjmRDh6wlufQlfC6pdQ/9urJkU07NM0tEREeymP++NczacJ/Q59ul+/K2eYvcg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css"
+        integrity="sha512-8vq2g5nHE062j3xor4XxPeZiPjmRDh6wlufQlfC6pdQ/9urJkU07NM0tEREeymP++NczacJ/Q59ul+/K2eYvcg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
     <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -76,7 +85,8 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="/QuanLyDiemTHPT/assets/images/logo-truong.png" alt="VNEDU" height="120" width="120">
+            <img class="animation__shake" src="/QuanLyDiemTHPT/assets/images/logo.png" alt="VNEDU" height="120"
+                width="120">
         </div>
 
         <!-- Navbar -->
@@ -95,11 +105,7 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
-                    </a>
-                </li>
+
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -110,15 +116,16 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="/QuanLyDiemTHPT" class="brand-link">
-                <img src="/QuanLyDiemTHPT/assets/images/logo-truong.png" alt="VNEDU" class="brand-image" style="opacity: .8">
-                <span class="brand-text font-weight-light">VNEDU</span>
+                <img src="/QuanLyDiemTHPT/assets/images/logo.png" alt="VNEDU" class="brand-image" style="opacity: .8">
+                <span class="brand-text font-weight-light">THPTLH</span>
             </a>
 
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a href="/QuanLyDiemTHPT/" class="nav-link">
@@ -130,12 +137,12 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
                             </a>
                             <ul class="nav nav-treeview">
                                 <?php if (in_array($taikhoan['role'], array('admin', 'manager'))) : ?>
-                                    <li class="nav-item">
-                                        <a href="/QuanLyDiemTHPT/system/quanlytaikhoan.php" class="nav-link">
-                                            <i class="fas fa-chevron-right nav-icon"></i>
-                                            <p>Quản lý tài khoản</p>
-                                        </a>
-                                    </li>
+                                <li class="nav-item">
+                                    <a href="/QuanLyDiemTHPT/system/quanlytaikhoan.php" class="nav-link">
+                                        <i class="fas fa-chevron-right nav-icon"></i>
+                                        <p>Quản lý tài khoản</p>
+                                    </a>
+                                </li>
                                 <?php endif; ?>
                                 <li class="nav-item">
                                     <a href="/QuanLyDiemTHPT/system/thongtintaikhoan.php" class="nav-link">
@@ -146,22 +153,22 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
                             </ul>
                         </li>
                         <?php if (in_array($taikhoan['role'], array('admin', 'manager', 'teacher'))) : ?>
-                            <li class="nav-item">
-                                <a href="/QuanLyDiemTHPT/quanly/hocsinh.php" class="nav-link">
-                                    <i class="nav-icon fas fa-user-graduate"></i>
-                                    <p>
-                                        Quản lý học sinh
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/QuanLyDiemTHPT/quanly/diem.php" class="nav-link">
-                                    <i class="nav-icon fas fa-file-contract"></i>
-                                    <p>
-                                        Quản lý điểm
-                                    </p>
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a href="/QuanLyDiemTHPT/quanly/hocsinh.php" class="nav-link">
+                                <i class="nav-icon fas fa-user-graduate"></i>
+                                <p>
+                                    Quản lý học sinh
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/QuanLyDiemTHPT/quanly/diem.php" class="nav-link">
+                                <i class="nav-icon fas fa-file-contract"></i>
+                                <p>
+                                    Quản lý điểm
+                                </p>
+                            </a>
+                        </li>
                         <?php endif; ?>
                         <?php if (in_array($taikhoan['role'], array('admin', 'manager'))) : ?>
                             <li class="nav-item">

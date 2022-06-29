@@ -259,9 +259,10 @@ $(document).ready(function() {
                 console.log(data)
                 listData = data.aaData
                 $('span#start').text(rowsPerPage * (page - 1) + 1)
-                $('span#end').text(rowsPerPage * page < data.iTotalRecords ? rowsPerPage * page :
-                    data.iTotalRecords)
-                $('span#total').text(data.iTotalRecords)
+                $('span#end').text(rowsPerPage * page < data.iTotalDisplayRecords ? rowsPerPage *
+                    page :
+                    data.iTotalDisplayRecords)
+                $('span#total').text(data.iTotalDisplayRecords)
                 $('#TaiKhoanTable').empty()
                 data.aaData.forEach((item, idx) => {
                     $('#TaiKhoanTable').append(
@@ -271,7 +272,7 @@ $(document).ready(function() {
 		 <button class="btn btn-info btn-sm float-right editable" attr-id="${item.id}"><i class="fas fa-pencil-alt"></i>Sửa</button></td></tr>`
                     )
                 })
-                totalRecords = data.iTotalRecords
+                totalRecords = data.iTotalDisplayRecords
 
                 $('#pagination').empty();
                 for (let i = 1; i < 1 + totalRecords / rowsPerPage; i++) {
