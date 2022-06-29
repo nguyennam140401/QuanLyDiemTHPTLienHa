@@ -3,7 +3,7 @@ session_start();
 ob_start();
 
 if ((!empty($_SESSION['username']) && !empty($_SESSION['password'])) || (!empty($_COOKIE['username']) && !empty($_COOKIE['token']))) {
-	header('Location: /QuanLyDIemTHPT/');
+	header('Location: /QuanLyDiemTHPT/');
 }
 
 $title = 'Đăng nhập';
