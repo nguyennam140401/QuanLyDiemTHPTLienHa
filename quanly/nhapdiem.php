@@ -47,8 +47,6 @@ if (!empty($_GET['maLop']) && !empty($_GET['maHK']) && !empty($_GET['maMH'])) :
 
     if ($check) {
         // Đưa ra bảng nhập
-
-
         $table = '';
         $table_header = '
 			<thead>
@@ -110,140 +108,139 @@ if (!empty($_GET['maLop']) && !empty($_GET['maHK']) && !empty($_GET['maMH'])) :
 
 ?>
 
-    <?php if ($check && in_array($taikhoan['role'], array('admin', 'manager', 'teacher'))) : ?>
+<?php if ($check && in_array($taikhoan['role'], array('admin', 'manager', 'teacher'))) : ?>
 
-        <style>
-            .toasts-top-right {
-                z-index: 1060 !important;
-            }
-        </style>
+<style>
+.toasts-top-right {
+    z-index: 1060 !important;
+}
+</style>
 
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0"><?php echo $title; ?></h1>
-                        </div><!-- /.col -->
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
-                                <li class="breadcrumb-item active"><?php echo $title; ?></li>
-                            </ol>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0"><?php echo $title; ?></h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/QuanLyDiemTHPT">Trang chủ</a></li>
+                        <li class="breadcrumb-item active"><?php echo $title; ?></li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
 
-            <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="card card-info">
-                        <div class="card-body">
-                            <table class="table table-striped projects">
-                                <tr>
-                                    <th>Mã lớp</th>
-                                    <td><?php echo $classInfo['maLop']; ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Tên lớp</th>
-                                    <td><?php echo $classInfo['tenLop']; ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Khối</th>
-                                    <td><?php echo $classInfo['tenKhoiLop']; ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Năm học</th>
-                                    <td><?php echo $classInfo['namHoc']; ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Chủ nhiệm </th>
-                                    <td><?php echo $classInfo['tenGV']; ?></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="card card-info">
-                        <div class="card-header">
-                            <h3 class="card-title">Nhập điểm môn <?php echo $monhoc['tenMH'] . ' - ' . $hocky['tenHK']; ?> </h3>
-                        </div>
-                        <div class="card-body">
-                            <form id="NhapDiem" method="post" action="#">
-                                <input type="hidden" name="maMH" value="<?php echo $maMH; ?>" required />
-                                <table class="table table-bordered table-striped dataTable" id="LopHocTable0" width="100%">
-                                    <?php echo $table; ?>
-                                </table>
-                                <button type="submit" class="btn btn-info btn-flat float-right" id="LuuDiem">Lưu điểm</button>
-                            </form>
-
-                        </div>
-                        <!-- /.card -->
-                    </div>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-info">
+                <div class="card-body">
+                    <table class="table table-striped projects">
+                        <tr>
+                            <th>Mã lớp</th>
+                            <td><?php echo $classInfo['maLop']; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Tên lớp</th>
+                            <td><?php echo $classInfo['tenLop']; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Khối</th>
+                            <td><?php echo $classInfo['tenKhoiLop']; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Năm học</th>
+                            <td><?php echo $classInfo['namHoc']; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Chủ nhiệm </th>
+                            <td><?php echo $classInfo['tenGV']; ?></td>
+                        </tr>
+                    </table>
                 </div>
-            </section>
+            </div>
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Nhập điểm môn <?php echo $monhoc['tenMH'] . ' - ' . $hocky['tenHK']; ?> </h3>
+                </div>
+                <div class="card-body">
+                    <form id="NhapDiem" method="post" action="#">
+                        <input type="hidden" name="maMH" value="<?php echo $maMH; ?>" required />
+                        <table class="table table-bordered table-striped dataTable" id="LopHocTable0" width="100%">
+                            <?php echo $table; ?>
+                        </table>
+                        <button type="submit" class="btn btn-info btn-flat float-right" id="LuuDiem">Lưu điểm</button>
+                    </form>
+
+                </div>
+                <!-- /.card -->
+            </div>
         </div>
+    </section>
+</div>
 
 
 
-        <script>
-            $(document).ready(function() {
+<script>
+$(document).ready(function() {
 
-                $('#NhapDiem').submit(function(event) {
-                    event.preventDefault();
-                    $("#LuuDiem").attr("disabled", true).html('<i class="fas fa-spinner fa-spin"></i> Lưu điểm');
-                    var form = $(this);
-                    var Data = form.serialize();
-                    $.ajax({
-                        url: '/QuanLyDiemTHPT/ajax/quanly/diem/nhapdiem.php',
-                        type: 'POST',
-                        data: Data,
-                        success: function(result) {
-                            if (result.success) {
-                                $.each(result.success, function(id, successMessage) {
-                                    $(document).Toasts('create', {
-                                        class: 'bg-success',
-                                        title: 'Thành công!',
-                                        body: successMessage
-                                    });
-                                });
-                                if (!result.error) {
-                                    setTimeout(function() {
-                                        window.location.reload();
-                                    }, 2000);
-                                }
-
-                            } else {
-                                $.each(result.error, function(id, errorMessage) {
-                                    $(document).Toasts('create', {
-                                        class: 'bg-danger',
-                                        title: 'Có lỗi xảy ra!',
-                                        body: errorMessage
-                                    });
-                                });
-                                $("#LuuDiem").attr("disabled", false).html('Lưu điểm');
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            alert(error);
-                            $("#LuuDiem").attr("disabled", false).html('Lưu điểm');
-                        }
+    $('#NhapDiem').submit(function(event) {
+        event.preventDefault();
+        $("#LuuDiem").attr("disabled", true).html('<i class="fas fa-spinner fa-spin"></i> Lưu điểm');
+        var form = $(this);
+        var Data = form.serializeArray();
+        console.log(Data)
+        $.ajax({
+            url: '/QuanLyDiemTHPT/ajax/quanly/diem/nhapdiem.php',
+            type: 'POST',
+            data: Data,
+            success: function(result) {
+                if (result.success) {
+                    $(document).Toasts('create', {
+                        class: 'bg-success',
+                        title: 'Thành công!',
+                        body: "Cập nhật thành công"
                     });
-                    return false;
-                });
+
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 2000);
 
 
-            });
-        </script>
+                } else {
+                    $.each(result.error, function(id, errorMessage) {
+                        $(document).Toasts('create', {
+                            class: 'bg-danger',
+                            title: 'Có lỗi xảy ra!',
+                            body: errorMessage
+                        });
+                    });
+                    $("#LuuDiem").attr("disabled", false).html('Lưu điểm');
+                }
+            },
+            error: function(xhr, status, error) {
+                alert(error);
+                $("#LuuDiem").attr("disabled", false).html('Lưu điểm');
+            }
+        });
+        return false;
+    });
+
+
+});
+</script>
 
 
 
 
-    <?php endif;  // endif kiểm sql và quyền
+<?php endif;  // endif kiểm sql và quyền
     ?>
 <?php endif;  // endif kiểm tra rỗng
 ?>
