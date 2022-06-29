@@ -1,12 +1,9 @@
 <?php
-$title = 'Quản lý môn học';
-require './../template/tpl_header.php';
-
+$title = 'Thêm môn học mới';
+require '../../template/tpl_header.php';
 ?>
 
 <?php if (in_array($taikhoan['role'], array('admin', 'manager'))) : ?>
-
-
 	<style>
 		.toasts-top-right {
 			z-index: 1060 !important;
@@ -39,21 +36,18 @@ require './../template/tpl_header.php';
 				<div class="card card-info">
 					<div class="card-header">
 						<h3 class="card-title">
-							<i class="nav-icon fas fa-award"></i>
-							Danh sách môn học
+							<i class="far fa-user"></i>
+							Thêm mới môn học
 						</h3>
-						<button type="button" class="btn btn-default btn-sm float-right p-0" onclick="$('#ModalAdd').modal({show: true});"><i class="fas fa-plus-circle"></i> Thêm mới</button>
 					</div>
 					<div class="card-body">
-						<table class="table table-striped projects" id="MonHocTable" width="100%">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>Tên môn</th>
-									<th></th>
-								</tr>
-							</thead>
-						</table>
+						<form action="process_add_monhoc.php" method="post" enctype="multipart/form" class="form col-md-6">
+							<div class="form-group">
+								<label for="nameMonHoc">Tên môn học</label>
+								<input type="text" class="form-control" id="nameMonHoc" name="name">
+							</div>
+							<button type="submit" class="btn btn-primary">Thêm mới</button>
+						</form>
 					</div>
 					<!-- /.card -->
 				</div>
@@ -95,8 +89,7 @@ require './../template/tpl_header.php';
 
 
 
-
-	<!-- MODAL CHO Add -->
+	<!-- TMODAL CHO Add -->
 
 	<div id="ModalAdd" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel2" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -204,7 +197,8 @@ require './../template/tpl_header.php';
 			// Submit form sửa
 			$("#EditForm").submit(function(event) {
 				event.preventDefault();
-				$("#EditSubmit").attr("disabled", true).html('<i class="fas fa-spinner fa-spin"></i> Lưu thông tin');
+				$("#EditSubmit").attr("disabled", true).html(
+					'<i class="fas fa-spinner fa-spin"></i> Lưu thông tin');
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
@@ -244,7 +238,8 @@ require './../template/tpl_header.php';
 			// Submit form thêm
 			$("#AddForm").submit(function(event) {
 				event.preventDefault();
-				$("#AddSubmit").attr("disabled", true).html('<i class="fas fa-spinner fa-spin"></i> Lưu thông tin');
+				$("#AddSubmit").attr("disabled", true).html(
+					'<i class="fas fa-spinner fa-spin"></i> Lưu thông tin');
 				var form = $(this);
 				var Data = form.serialize();
 				$.ajax({
@@ -290,5 +285,5 @@ require './../template/tpl_header.php';
 
 <?php endif; ?>
 <?php
-require './../template/tpl_footer.php';
+require '../../template/tpl_footer.php';
 ?>

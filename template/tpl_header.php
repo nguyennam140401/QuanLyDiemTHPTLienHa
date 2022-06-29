@@ -171,76 +171,76 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
                         </li>
                         <?php endif; ?>
                         <?php if (in_array($taikhoan['role'], array('admin', 'manager'))) : ?>
-                        <li class="nav-item">
-                            <a href="/QuanLyDiemTHPT/quanly/giaovien.php" class="nav-link">
-                                <i class="nav-icon fas fa-user-tie"></i>
-                                <p>
-                                    Quản lý giáo viên
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/QuanLyDiemTHPT/quanly/monhoc.php" class="nav-link">
-                                <i class="nav-icon fas fa-award"></i>
-                                <p>
-                                    Quản lý môn học
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-calendar-alt"></i>
-                                <p>
-                                    Quản lý lớp - học kỳ
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/QuanLyDiemTHPT/quanly/lophoc.php" class="nav-link">
-                                        <i class="fas fa-chevron-right nav-icon"></i>
-                                        <p>Quản lý lớp học</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/QuanLyDiemTHPT/quanly/namhoc.php" class="nav-link">
-                                        <i class="fas fa-chevron-right nav-icon"></i>
-                                        <p>Học kỳ - Khối lớp - Năm học</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/QuanLyDiemTHPT/quanly/phanconggv.php" class="nav-link">
-                                <i class="nav-icon fas fa-file-contract"></i>
-                                <p>
-                                    Phân công công việc
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-bar"></i>
-                                <p>
-                                    Thống kê
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/QuanLyDiemTHPT/thongke/thongkesiso.php" class="nav-link">
-                                        <i class="fas fa-chevron-right nav-icon"></i>
-                                        <p>Thống kê sĩ số lớp</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/QuanLyDiemTHPT/thongke/thongkediem.php" class="nav-link">
-                                        <i class="fas fa-chevron-right nav-icon"></i>
-                                        <p>Thống kê điểm học sinh</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                            <li class="nav-item">
+                                <a href="/QuanLyDiemTHPT/quanly/giaovien/giaovien.php" class="nav-link">
+                                    <i class="nav-icon fas fa-user-tie"></i>
+                                    <p>
+                                        Quản lý giáo viên
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/QuanLyDiemTHPT/quanly/monhoc/monhoc.php" class="nav-link">
+                                    <i class="nav-icon fas fa-award"></i>
+                                    <p>
+                                        Quản lý môn học
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-calendar-alt"></i>
+                                    <p>
+                                        Quản lý lớp - học kỳ
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/QuanLyDiemTHPT/quanly/lophoc.php" class="nav-link">
+                                            <i class="fas fa-chevron-right nav-icon"></i>
+                                            <p>Quản lý lớp học</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/QuanLyDiemTHPT/quanly/namhoc/namhoc.php" class="nav-link">
+                                            <i class="fas fa-chevron-right nav-icon"></i>
+                                            <p>Học kỳ - Khối lớp - Năm học</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/QuanLyDiemTHPT/quanly/phanconggv.php" class="nav-link">
+                                    <i class="nav-icon fas fa-file-contract"></i>
+                                    <p>
+                                        Phân công công việc
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-chart-bar"></i>
+                                    <p>
+                                        Thống kê
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/QuanLyDiemTHPT/thongke/thongkesiso.php" class="nav-link">
+                                            <i class="fas fa-chevron-right nav-icon"></i>
+                                            <p>Thống kê sĩ số lớp</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/QuanLyDiemTHPT/thongke/thongkediem.php" class="nav-link">
+                                            <i class="fas fa-chevron-right nav-icon"></i>
+                                            <p>Thống kê điểm học sinh</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                         <?php endif; ?>
                         <li class="nav-item">
                             <a href="#" class="nav-link">

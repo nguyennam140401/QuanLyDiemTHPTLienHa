@@ -1,6 +1,9 @@
 <?php
 $title = 'Quản lý giáo viên';
-require './../template/tpl_header.php';
+require '../../template/tpl_header.php';
+require '../../template/config.php';
+$sql = 'SELECT * FROM giaovien';
+$result = $mysqli->query($sql);
 
 ?>
 
@@ -48,8 +51,22 @@ require './../template/tpl_header.php';
 							<i class="nav-icon fas fa-calendar-alt"></i>
 							Danh sách giáo viên
 						</h3>
-						<button type="button" class="btn btn-warning btn-xs float-right" onclick="$('#ModalAdd').modal({show: true});"><i class="fas fa-plus-circle"></i> Thêm mới</button>
+						<button type="button" class="btn btn-default btn-sm float-right p-0">
+							<a href="add_giaovien.php" class="btn btn-primary">Thêm mới</a>
+						</button>
 					</div>
+					<div class="col-md-3 mt-3">
+						<input class="form-control" type="search" placeholder="Nhập tên giao vien muốn tìm" id="search">
+						<button class="btn btn-primary mt-3">Tìm kiếm</button>
+					</div>
+					<?php if(isset($_SESSION['delete_giaovien_error'])) { ?>
+						<h4 class="text-danger mt-3"><?php echo $_SESSION['delete_giaovien_error']?></h4>
+					<?php }
+					unset($_SESSION['delete_giaovien_error'])?>
+					<?php if(isset($_SESSION['delete_giaovien_success'])) { ?>
+						<h4 class="text-success mt-3"><?php echo $_SESSION['delete_giaovien_success'] ?></h4>
+					<?php }
+					unset($_SESSION['delete_giaovien_success']) ?>
 					<div class="card-body">
 						<table class="table table-striped projects" id="GiaoVienTable" width="100%">
 							<thead>
@@ -59,18 +76,32 @@ require './../template/tpl_header.php';
 									<th>Ngày sinh</th>
 									<th>Giới tính</th>
 									<th>Địa chỉ</th>
-									<th></th>
+									<th style="text-align:center">Sửa</th>
+									<th style="text-align:center">Xóa</th>
 								</tr>
 							</thead>
 							<tfoot>
-								<tr>
-									<th>#</th>
-									<th>Giáo viên</th>
-									<th>Ngày sinh</th>
-									<th>Giới tính</th>
-									<th>Địa chỉ</th>
-									<th></th>
-								</tr>
+								<?php foreach ($result as $item) : ?>
+									<tr>
+										<td><?= $item['maGV'] ?></td>
+										<td><?= $item['tenGV'] ?></td>
+										<td><?= $item['ngaySinh'] ?></td>
+										<td><?= $item['gioiTinh'] ?></td>
+										<td><?= $item['diaChi'] ?></td>
+										<td style="text-align:center">
+											<a href="edit_giaovien.php?id=<?= $item['maGV'] ?>" class="btn btn-info btn-sm editable">
+												<i class="fas fa-pencil-alt"></i>Sửa
+											</a>
+										</td>
+										</button>
+										<td style="text-align:center">
+											<a class="btn btn-danger btn-sm deleteable" href="process_delete_giaovien.php?id=<?= $item['maGV'] ?>">
+												<i class="fas fa-trash"></i>
+												Xóa
+											</a>
+										</td>
+									</tr>
+								<?php endforeach; ?>	
 							</tfoot>
 						</table>
 					</div>
@@ -78,6 +109,7 @@ require './../template/tpl_header.php';
 				</div>
 			</div>
 		</section>
+
 	</div>
 	<!-- Datatables -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js" integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -212,249 +244,10 @@ require './../template/tpl_header.php';
 			</div>
 		</div>
 	</div>
-	<script>
-		$(document).ready(function() {
-
-			var listDataTable = $('#GiaoVienTable').DataTable({
-				processing: true,
-				serverSide: true,
-				serverMethod: 'post',
-				ajax: {
-					'url': '/QuanLyDiemTHPT/ajax/quanly/giaovien/getListGiaoVien.php'
-				},
-				pageLength: 50,
-				lengthMenu: [
-					[10, 25, 50, 100, -1],
-					[10, 25, 50, 100, "All"]
-				],
-				'columns': [{
-						data: 'maGV',
-						searchable: false
-					},
-					{
-						data: 'tenGV'
-					},
-					{
-						data: 'ngaySinh'
-					},
-					{
-						data: 'gioiTinh',
-						render: function(data, type, row) {
-							return data == 0 ? 'Nam' : 'Nữ';
-						}
-					},
-					{
-						data: 'diaChi'
-					},
-					{
-						targets: -1,
-						data: null,
-						orderable: false,
-						searchable: false,
-						defaultContent: "<a class=\"btn btn-danger btn-sm float-right deleteable\" href=\"#\"><i class=\"fas fa-trash\"></i>Xoá</a> \n <a class=\"btn btn-info btn-sm float-right editable\" href=\"#\"><i class=\"fas fa-pencil-alt\"></i>Sửa</a>"
-					}
-				],
-				language: {
-					url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Vietnamese.json'
-				},
-				dom: "<'row'<'col-sm-12 col-md-8'Bl><'col-sm-12 col-md-4'f>>" +
-					"<'row'<'col-sm-12'tr>>" +
-					"<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-				buttons: [{
-						extend: 'copy',
-						exportOptions: {
-							columns: ':not(:last-child)',
-						}
-					},
-					{
-						extend: 'csv',
-						exportOptions: {
-							columns: ':not(:last-child)',
-						}
-					},
-					{
-						extend: 'excel',
-						exportOptions: {
-							columns: ':not(:last-child)',
-						}
-					},
-					{
-						extend: 'pdf',
-						exportOptions: {
-							columns: ':not(:last-child)',
-						}
-					},
-					{
-						extend: 'print',
-						exportOptions: {
-							columns: ':not(:last-child)',
-						}
-					}
-				],
-				initComplete: function() {
-					$('#GiaoVienTable_length').css('display', 'inline-block');
-					$('#GiaoVienTable_length').css('padding-left', '15px');
-
-
-				}
-
-			});
-
-
-
-			$('#GiaoVienTable tbody').on('click', '.editable', function() {
-				var data = listDataTable.row($(this).parents('tr')).data();
-				if (data) {
-					console.log(data);
-					// đổ dữ liệu vào form
-					$("#ModalEdit input#maGV").val(data.maGV);
-					$("#ModalEdit input#tenGV").val(data.tenGV);
-					$("#ModalEdit input#ngaySinh").val(data.ngaySinh);
-					$("#ModalEdit select#gioiTinh").val(data.gioiTinh);
-					$("#ModalEdit input#diaChi").val(data.diaChi);
-					$("#ModalEdit").modal({
-						show: true
-					});
-				} else {
-					$(document).Toasts('create', {
-						class: 'bg-danger',
-						title: 'Có lỗi xảy ra!',
-						body: 'Không tìm thấy dữ liệu'
-					});
-				}
-			});
-			$('#GiaoVienTable tbody').on('click', '.deleteable', function() {
-				var data = listDataTable.row($(this).parents('tr')).data();
-				if (confirm('Bạn có muốn xoá bản ghi này?')) {
-					$.ajax({
-						url: '/QuanLyDiemTHPT/ajax/quanly/giaovien/deleteGiaoVien.php',
-						type: 'POST',
-						data: {
-							maGV: data['maGV']
-						},
-						success: function(result) {
-							if (result.success) {
-								$(document).Toasts('create', {
-									class: 'bg-success',
-									title: 'Thành công!',
-									body: result.success
-								});
-								setTimeout(function() {
-									window.location.reload();
-								}, 2000);
-							} else {
-								$(document).Toasts('create', {
-									class: 'bg-danger',
-									title: 'Có lỗi xảy ra!',
-									body: result.error
-								});
-							}
-						},
-						error: function(xhr, status, error) {
-							alert(error);
-						}
-					});
-				}
-			});
-
-
-			// Submit form sửa
-			$("#EditForm").submit(function(event) {
-				event.preventDefault();
-				$("#EditSubmit").attr("disabled", true).html('<i class="fas fa-spinner fa-spin"></i> Lưu thông tin');
-				var form = $(this);
-				var Data = form.serialize();
-				$.ajax({
-					url: '/QuanLyDiemTHPT/ajax/quanly/giaoVien/editGiaoVien.php',
-					type: 'POST',
-					data: Data,
-					success: function(result) {
-						if (result.success) {
-							$(document).Toasts('create', {
-								class: 'bg-success',
-								title: 'Thành công!',
-								body: result.success
-							});
-							setTimeout(function() {
-								window.location.reload();
-							}, 2000);
-						} else {
-							$.each(result.error, function(id, errorMessage) {
-								$(document).Toasts('create', {
-									class: 'bg-danger',
-									title: 'Có lỗi xảy ra!',
-									body: errorMessage
-								});
-							});
-							$("#EditSubmit").attr("disabled", false).html('Lưu thông tin');
-						}
-					},
-					error: function(xhr, status, error) {
-						alert(error);
-						$("#EditSubmit").attr("disabled", false).html('Lưu thông tin');
-					}
-				});
-				return false;
-			});
-
-
-			// Submit form thêm
-			$("#AddForm").submit(function(event) {
-				event.preventDefault();
-				$("#AddSubmit").attr("disabled", true).html('<i class="fas fa-spinner fa-spin"></i> Lưu thông tin');
-				var form = $(this);
-				var Data = form.serialize();
-				$.ajax({
-					url: '/QuanLyDiemTHPT/ajax/quanly/giaoVien/addGiaoVien.php',
-					type: 'POST',
-					data: Data,
-					success: function(result) {
-						if (result.success) {
-							$(document).Toasts('create', {
-								class: 'bg-success',
-								title: 'Thành công!',
-								body: result.success
-							});
-							setTimeout(function() {
-								window.location.reload();
-							}, 2000);
-						} else {
-							$.each(result.error, function(id, errorMessage) {
-								$(document).Toasts('create', {
-									class: 'bg-danger',
-									title: 'Có lỗi xảy ra!',
-									body: errorMessage
-								});
-							});
-							$("#AddSubmit").attr("disabled", false).html('Lưu thông tin');
-						}
-					},
-					error: function(xhr, status, error) {
-						alert(error);
-						$("#AddSubmit").attr("disabled", false).html('Lưu thông tin');
-					}
-				});
-				return false;
-			});
-
-
-			//Date picker
-			$('#ngaySinhEdit').datetimepicker({
-				//format: 'L',
-				format: 'YYYY-MM-DD'
-			});
-			$('#ngaySinhAdd').datetimepicker({
-				//format: 'L',
-				format: 'YYYY-MM-DD'
-			});
-
-		});
-	</script>
-
 
 
 
 <?php endif; ?>
 <?php
-require './../template/tpl_footer.php';
+require '../../template/tpl_footer.php';
 ?>
