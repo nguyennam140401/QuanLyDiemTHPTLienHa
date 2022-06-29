@@ -53,7 +53,7 @@ require './../template/tpl_header.php';
                         <i class="nav-icon fas fa-calendar-alt"></i>
                         Danh sách lớp học
                     </h3>
-                    <input type="search" placeholder="Nhập tên tài khoản, email muốn tìm" id="search">
+                    <input type="search" placeholder="Nhập tên lớp học" id="search">
                     <button type="button" class="btn btn-warning btn-xs float-right"
                         onclick="$('#ModalAdd').modal({show: true});"><i class="fas fa-plus-circle"></i> Thêm
                         mới</button>
@@ -366,7 +366,8 @@ $(document).ready(function() {
 
 
     $('#LopHocTable').on('click', '.editable', function(e) {
-        var data = listData.find(item => item.id == e.target.getAttribute('attr-id'))
+        var data = listData.find(item => item.maLop == e.target.getAttribute('attr-id'))
+        console.log(e.target.getAttribute('attr-id'), listData)
         if (data) {
             console.log(data);
             // đổ dữ liệu vào form
@@ -387,13 +388,13 @@ $(document).ready(function() {
         }
     });
     $('#LopHocTable').on('click', '.deleteable', function(e) {
-        var data = listData.find(item => item.id == e.target.getAttribute('attr-id'))
+        var data = listData.find(item => item.maLop == e.target.getAttribute('attr-id'))
         if (confirm('Bạn có muốn xoá bản ghi này?')) {
             $.ajax({
                 url: '/QuanLyDiemTHPT/ajax/quanly/lophoc/deleteLopHoc.php',
                 type: 'POST',
                 data: {
-                    maLop: data['maLop']
+                    maLop: e.target.getAttribute('attr-id')
                 },
                 success: function(result) {
                     if (result.success) {

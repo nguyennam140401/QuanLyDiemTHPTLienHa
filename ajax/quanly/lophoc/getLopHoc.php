@@ -34,7 +34,6 @@ if ((empty($_SESSION['username']) && empty($_SESSION['password']))) {
 			$columnIndex = empty($_GET['order'][0]['column']) ? 0 : htmlspecialchars($_GET['order'][0]['column']); // Column index
 			$columnName =  'maLop'; // Column name
 
-			$columnSortOrder = empty($_GET['order'][0]['dir']) ? 'asc' : htmlspecialchars($_GET['order'][0]['dir']); // asc or desc
 
 			## Search 
 			$searchValue = empty($_GET['search']) ? '' : htmlspecialchars($_GET['search']); // Search value
@@ -44,7 +43,7 @@ if ((empty($_SESSION['username']) && empty($_SESSION['password']))) {
 			            `tenLop` LIKE '%" . $searchValue . "%' OR `namHoc` LIKE '%" . $searchValue . "%' OR `tenGV` LIKE '%" . $searchValue . "%') ";
 			}
 
-
+			$columnSortOrder = 'asc';
 
 			## Total number of records without filtering
 			$sel = $mysqli->query("SELECT count(*) AS `allcount` FROM `lop`");

@@ -19,13 +19,13 @@ $title = 'Đăng nhập';
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="author" content="vuiz.net">
 	<meta property="og:title" content="Hệ thống quản lý điểm trường THPT Liên Hà" />
-	<meta property="og:image" content="assets/images/logo-truong.png" />
+	<meta property="og:image" content="assets/images/logo.png" />
 	<meta property="og:site_name" content="THPTLH" />
 	<meta property="og:description" content="Hệ thống quản lý điểm trường THPT Liên Hà" />
 	<meta property="og:url" content="https://vnedu.vuiz.net" />
 	<!-- Favicon -->
-	<link href="assets/images/favicon.png" rel="icon" type="image/png">
-	<link href="assets/images/favicon.png" rel="shortcut icon" type="image/png">
+	<link href="assets/images/logo.png" rel="icon" type="image/png">
+	<link href="assets/images/logo.png" rel="shortcut icon" type="image/png">
 
 
 	<!-- Google Font: Source Sans Pro -->
