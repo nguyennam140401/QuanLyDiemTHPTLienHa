@@ -78,6 +78,12 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <style>
+    .hidden {
+        display: none;
+    }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -161,6 +167,8 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
                                 </p>
                             </a>
                         </li>
+                        <?php endif; ?>
+                        <?php if (in_array($taikhoan['role'], array('admin', 'manager', 'teacher', 'student'))) : ?>
                         <li class="nav-item">
                             <a href="/QuanLyDiemTHPT/quanly/diem.php" class="nav-link">
                                 <i class="nav-icon fas fa-file-contract"></i>
@@ -196,12 +204,7 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <!-- <li class="nav-item">
-                                        <a href="/QuanLyDiemTHPT/quanly/lophoc.php" class="nav-link">
-                                            <i class="fas fa-chevron-right nav-icon"></i>
-                                            <p>Quản lý lớp học</p>
-                                        </a>
-                                    </li> -->
+
                                 <li class="nav-item">
                                     <a href="/QuanLyDiemTHPT/quanly/namhoc/namhoc.php" class="nav-link">
                                         <i class="fas fa-chevron-right nav-icon"></i>
@@ -218,53 +221,9 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-bar"></i>
-                                <p>
-                                    Thống kê
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/QuanLyDiemTHPT/thongke/thongkesiso.php" class="nav-link">
-                                        <i class="fas fa-chevron-right nav-icon"></i>
-                                        <p>Thống kê sĩ số lớp</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/QuanLyDiemTHPT/thongke/thongkediem.php" class="nav-link">
-                                        <i class="fas fa-chevron-right nav-icon"></i>
-                                        <p>Thống kê điểm học sinh</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+
                         <?php endif; ?>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-search"></i>
-                                <p>
-                                    Tra cứu
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/QuanLyDiemTHPT/tracuu/lophoc.php" class="nav-link">
-                                        <i class="fas fa-chevron-right nav-icon"></i>
-                                        <p>Tra cứu lớp học</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/QuanLyDiemTHPT/tracuu/diem.php" class="nav-link">
-                                        <i class="fas fa-chevron-right nav-icon"></i>
-                                        <p>Tra cứu điểm</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
