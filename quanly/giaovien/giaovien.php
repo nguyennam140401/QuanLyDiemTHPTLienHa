@@ -71,7 +71,7 @@ if (isset($_GET['q'])) {
                                 <button class="btn btn-primary mt-3" type="submit">Tìm kiếm</button>
                             </form>
                         <?php } ?>
-                    </div>ch 
+                    </div> 
                     <?php if (isset($_SESSION['delete_giaovien_error'])) { ?>
                         <h4 class="text-danger mt-3"><?php echo $_SESSION['delete_giaovien_error'] ?></h4>
                     <?php }
