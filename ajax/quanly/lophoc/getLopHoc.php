@@ -24,7 +24,7 @@ if ((empty($_SESSION['username']) && empty($_SESSION['password']))) {
 
 	if ($result->num_rows > 0) {
 		$taikhoan = $result->fetch_array(MYSQLI_ASSOC);
-		if (in_array($taikhoan['role'], array('admin', 'manager', 'teacher'))) {
+		if (in_array($taikhoan['role'], array('admin', 'manager', 'teacher', 'student'))) {
 
 			$draw = empty($_GET['draw']) ? '' : htmlspecialchars($_GET['draw']);
 			$row = empty($_GET['start']) ? 0 : htmlspecialchars($_GET['start']);

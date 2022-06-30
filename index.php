@@ -80,7 +80,7 @@ $userCount = $mysqli->query('SELECT COUNT(*) AS `count` FROM `taiKhoan`;')->fetc
                         <div class="icon">
                             <i class="fas fa-chalkboard-teacher"></i>
                         </div>
-                        <a href="/QuanLyDiemTHPT/quanly/lophoc.php" class="small-box-footer">Xem thêm <i
+                        <a href="/QuanLyDiemTHPT/quanly/diem.php" class="small-box-footer">Xem thêm <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
