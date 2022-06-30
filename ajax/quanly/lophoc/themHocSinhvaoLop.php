@@ -40,6 +40,7 @@ if ((empty($_SESSION['username']) && empty($_SESSION['password']))) {
 
 					$lop = $searchLop->fetch_array(MYSQLI_ASSOC);
 
+					//Kiem tra hoc sinh co trong lop khac trong cung 1 kì hay không
 					$checkHocKy = $mysqli->query('SELECT * FROM `phan_lop_hocsinh` INNER JOIN `lop` ON `lop`.`maLop` = `phan_lop_hocsinh`.`maLop` WHERE `maHS`=' . $maHS . ' AND `maNH`= ' . $lop['maNH'] . ' AND `maHK`= ' . $maHK . ';');
 
 					if ($checkHocKy->num_rows > 0) {
