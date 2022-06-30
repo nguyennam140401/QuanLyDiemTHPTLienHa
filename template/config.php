@@ -3,7 +3,7 @@ $configs = array(
     'hostname' => 'localhost',
     'dbuser' => 'root',
     'dbpass' => '',
-    'dbname' => 'vnedu'
+    'dbname' => 'thptlienha'
 );
 
 $mysqli = new mysqli($configs['hostname'], $configs['dbuser'], $configs['dbpass'], $configs['dbname']);
