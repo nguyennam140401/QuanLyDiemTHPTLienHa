@@ -177,7 +177,7 @@ if (!empty($_GET['maLop'])) {
 
 <div id="AssignModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
     aria-labelledby="myExtraLargeModalLabel2" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header bg-info">
                 <strong>Phân công giảng dạy</strong> <span id="TenMonHocAssign" class="text-danger"></span>
@@ -189,25 +189,13 @@ if (!empty($_GET['maLop'])) {
                     <input type="hidden" name="maLop" value="<?php echo $classInfo['maLop']; ?>" required />
                     <input type="hidden" name="maMH" value="" required />
                     <div class="row">
-                        <div class="col-xl-8">
-                            <table class="table table-bordered table-striped" id="DanhSachGiaoVien1" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th width="1%">Mã</th>
-                                        <th>Tên giáo viên</th>
-                                        <th>Ngày sinh</th>
-                                        <th>Giới tính</th>
-                                        <th>Địa chỉ</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                        <div class="col-xl-4">
+
+                        <div class="col-xl-12">
                             <div class="form-group">
                                 <label for="maGV">Chọn giáo viên</label>
                                 <select name="maGV" class="form-control" required>
+                                    <option value="" hidden>Chọn một giáo viên</option>
                                 </select>
-                                <small class="form-text text-muted text-alert">* Chọn từ danh sách bên cạnh</small>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-info float-right" id="AssignSubmit">Lưu thông
@@ -229,7 +217,7 @@ if (!empty($_GET['maLop'])) {
 
 <div id="EditAssignModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
     aria-labelledby="myExtraLargeModalLabel2" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-info">
                 <strong>Phân công giảng dạy</strong> <span id="TenMonHocAssign2" class="text-danger"></span>
@@ -240,25 +228,11 @@ if (!empty($_GET['maLop'])) {
                 <form id="EditAssignForm" action="#" method="post">
                     <input type="hidden" name="id" value="" required />
                     <div class="row">
-                        <div class="col-xl-8">
-                            <table class="table table-bordered table-striped" id="DanhSachGiaoVien2" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th width="1%">Mã</th>
-                                        <th>Tên giáo viên</th>
-                                        <th>Ngày sinh</th>
-                                        <th>Giới tính</th>
-                                        <th>Địa chỉ</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-12">
                             <div class="form-group">
                                 <label for="maGV">Chọn giáo viên</label>
                                 <select name="maGV" class="form-control" required>
                                 </select>
-                                <small class="form-text text-muted text-alert">* Chọn từ danh sách bên cạnh</small>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-info float-right" id="EditAssignSubmit">Lưu thông
@@ -361,112 +335,32 @@ $(document).ready(function() {
         });
         return false;
     });
+    // Lấy danh sách giáo viên
+    function getGiaoVien() {
+        console.log('get')
+        $.ajax({
+            url: '/QuanLyDiemTHPT/ajax/quanly/lophoc/getInfo.php',
+            success: function(data) {
+                console.log(data)
+                $('#AssignForm select[name=maGV]').html(
+                    '<option>Chọn một giáo viên trong bảng bên cạnh</option>');
+                $('#EditAssignForm select[name=maGV]').html('');
+                console.log($('#EditAssignForm select[name=maGV]'))
+                data[4].forEach(item => {
+                    console.log(item)
+                    $('#AssignForm select[name=maGV]').append('<option value="' + item.id +
+                        '">' + item.value +
+                        '</option>');
+                    $('#EditAssignForm select[name=maGV]').append('<option value="' + item
+                        .id +
+                        '">' + item.value +
+                        '</option>');
+                })
 
-    // // ĐƯa data vào bảng trong modal thêm giáo viên giảng dạy
-    $('#DanhSachGiaoVien1').DataTable().destroy();
-    var dataTableHS = $('#DanhSachGiaoVien1').DataTable({
-        'processing': true,
-        'serverSide': true,
-        'serverMethod': 'post',
-        'ajax': {
-            'url': '/QuanLyDiemTHPT/ajax/quanly/giaovien/getListGiaoVien.php'
-        },
-        pageLength: 10,
-        'columns': [{
-                data: 'maGV',
-                searchable: false
-            },
-            {
-                data: 'tenGV'
-            },
-            {
-                data: 'ngaySinh'
-            },
-            {
-                data: 'gioiTinh',
-                render: function(data, type, row) {
-                    return data == 0 ? 'Nam' : 'Nữ';
-                }
-            },
-            {
-                data: 'diaChi'
             }
-        ],
-        language: {
-            url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Vietnamese.json'
-        }
-
-    });
-
-    $('#DanhSachGiaoVien1 tbody').on('click', 'tr', function() {
-        var giaovien = dataTableHS.row(this).data();
-        console.log(giaovien);
-        $('#AssignForm select[name=maGV]').html('<option value="' + giaovien.maGV + '">' + giaovien
-            .tenGV + '</option>');
-        if ($(this).hasClass('bg-olive')) {
-            $(this).removeClass('bg-olive');
-        } else {
-            dataTableHS.$('tr.bg-olive').removeClass('bg-olive');
-            $(this).addClass('bg-olive');
-        }
-    });
-
-
-
-
-    // ĐƯa data vào bảng trong modal sửa giáo viên giảng dạy
-    $('#DanhSachGiaoVien2').DataTable().destroy();
-    var dataTableGV = $('#DanhSachGiaoVien2').DataTable({
-        'processing': true,
-        'serverSide': true,
-        'serverMethod': 'post',
-        'ajax': {
-            'url': '/QuanLyDiemTHPT/ajax/quanly/giaovien/getListGiaoVien.php'
-        },
-        pageLength: 10,
-        'columns': [{
-                data: 'maGV',
-                searchable: false
-            },
-            {
-                data: 'tenGV'
-            },
-            {
-                data: 'ngaySinh'
-            },
-            {
-                data: 'gioiTinh',
-                render: function(data, type, row) {
-                    return data == 0 ? 'Nam' : 'Nữ';
-                }
-            },
-            {
-                data: 'diaChi'
-            }
-        ],
-        language: {
-            url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Vietnamese.json'
-        }
-
-    });
-
-    $('#DanhSachGiaoVien2 tbody').on('click', 'tr', function() {
-        var giaovien = dataTableGV.row(this).data();
-        console.log(giaovien);
-        $('#EditAssignModal select[name=maGV]').html('<option value="' + giaovien.maGV + '">' + giaovien
-            .tenGV + '</option>');
-        if ($(this).hasClass('bg-olive')) {
-            $(this).removeClass('bg-olive');
-        } else {
-            dataTableGV.$('tr.bg-olive').removeClass('bg-olive');
-            $(this).addClass('bg-olive');
-        }
-    });
-
-
-
-
-
+        });
+    }
+    getGiaoVien()
 });
 
 
@@ -475,24 +369,23 @@ $(document).ready(function() {
 function PhanCongGiaoVien(maMH, tenMH) {
     $("#AssignModal input[name=maMH]").val(maMH);
     $("#AssignModal span#TenMonHocAssign").html(tenMH);
-    $('#AssignForm select[name=maGV]').html('<option>Chọn một giáo viên trong bảng bên cạnh</option>');
+
     $("#AssignModal").modal({
         show: true
     });
-    $('#DanhSachGiaoVien1').DataTable().$('tr.bg-olive').removeClass('bg-olive');
-
 }
 
 // Hiện model sửa phân công
 function DoiGiaoVien(maPhanCong, monhoc, maGV, tenGV) {
-    $("#EditAssignForm input[name=id]").val(maPhanCong);
+
+    $("#EditAssignForm input[name='id']").val(maPhanCong);
     $("#EditAssignForm span#TenMonHocAssign2").html(monhoc);
-    $('#EditAssignForm select[name=maGV]').html('<option value="' + maGV + '">' + tenGV + '</option>');
+    $('#EditAssignForm select[name="maGV"]').val(maGV);
     $("#EditAssignModal").modal({
         show: true
     });
 
-    $('#DanhSachGiaoVien2').DataTable().$('tr.bg-olive').removeClass('bg-olive');
+
 
 }
 </script>
