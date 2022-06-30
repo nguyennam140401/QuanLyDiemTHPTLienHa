@@ -136,8 +136,6 @@ if (!empty($_GET['maLop'])) {
                             </div>
                         </div>
                     </div>
-
-
                 </form>
             </div>
         </div>
@@ -263,7 +261,6 @@ $(document).ready(function() {
 
 });
 
-
 function fillToLop(tableindex, maLop, maHK) {
     $.ajax({
         url: '/QuanLyDiemTHPT/ajax/tracuu/lophoc/getLopHoc.php?maLop=' + maLop + '&maHK=' + maHK +
@@ -282,58 +279,6 @@ function fillToLop(tableindex, maLop, maHK) {
             })
         }
     });
-}
-
-function FillTableLopHoc(tableindex, maLop, maHK) {
-    var dataTable = $('#LopHocTable' + tableindex).DataTable({
-        'processing': true,
-        'serverSide': true,
-        'serverMethod': 'post',
-        'ajax': {
-            'url': '/QuanLyDiemTHPT/ajax/tracuu/lophoc/getLopHoc.php?maLop=' + maLop + '&maHK=' + maHK
-        },
-        pageLength: 50,
-        'columns': [{
-                data: 'hocsinh.maHS',
-                searchable: false
-            },
-            {
-                data: 'hocsinh.tenHS',
-                fnCreatedCell: function(nTd, sData, oData, iRow, iCol) {
-                    $(nTd).html("<a href='/QuanLyDiemTHPT/tracuu/diem.php?maHS=" + oData.hocsinh.maHS +
-                        "'>" + oData.hocsinh.tenHS + "</a>");
-                }
-            },
-            {
-                data: 'hocsinh.ngaySinh'
-            },
-            {
-                data: 'hocsinh.gioiTinh',
-                render: function(data, type, row) {
-                    return data == 0 ? 'Nam' : 'Nữ';
-                }
-            },
-            {
-                data: 'hocsinh.noiSinh'
-            }
-        ],
-        language: {
-            url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Vietnamese.json'
-        },
-        dom: "<'row'<'col-sm-12 col-md-8'Bl><'col-sm-12 col-md-4'f>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        buttons: ['copy', 'excel', {
-            extend: 'csv',
-            charset: 'UTF-8'
-        }, 'pdf', 'print'],
-        initComplete: function() {
-            $('#LopHocTable' + tableindex + '_length').css('display', 'inline-block');
-            $('#LopHocTable' + tableindex + '_length').css('padding-left', '15px');
-        }
-
-    });
-
 }
 
 function MonHocButton(listmonHoc, maLop, maHK) {
