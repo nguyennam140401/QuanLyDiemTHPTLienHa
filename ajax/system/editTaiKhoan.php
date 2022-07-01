@@ -8,11 +8,10 @@ header('Content-Type: application/json');
 
 $response = [];
 
-if((empty($_SESSION['username']) && empty($_SESSION['password']))) {
+if ((empty($_SESSION['username']) && empty($_SESSION['password']))) {
 	$response['error'][] = 'Xin lỗi, Phiên làm việc của bạn đã hết hạn. Vui lòng đăng nhập lại!';
-}
-else {
-	
+} else {
+
 	if (!empty($_POST['id']) && !empty($_POST['email'])) {
 		$id = (int)htmlspecialchars($_POST['id']);
 		$role = htmlspecialchars($_POST['role']);
@@ -23,7 +22,7 @@ else {
 
 		// Xem phân quyền có cho phép sửa không
 		$taikhoan = array();
-		$result = $mysqli->query('SELECT * FROM `taikhoan` WHERE `username`=\''.htmlspecialchars($_SESSION['username']).'\' AND `password`=\''.htmlspecialchars($_SESSION['password']).'\';');
+		$result = $mysqli->query('SELECT * FROM `taikhoan` WHERE `username`=\'' . htmlspecialchars($_SESSION['username']) . '\' AND `password`=\'' . htmlspecialchars($_SESSION['password']) . '\';');
 		if ($result->num_rows > 0) {
 			$taikhoan = $result->fetch_array(MYSQLI_ASSOC);
 			if (in_array($taikhoan['role'], array('admin', 'manager'))) {
@@ -45,22 +44,22 @@ else {
 				}
 
 				if (empty($response['error'])) {
-					$searchUser = $mysqli->query('SELECT * FROM `taikhoan` WHERE `id`='.$id.';');
+					$searchUser = $mysqli->query('SELECT * FROM `taikhoan` WHERE `id`=' . $id . ';');
 					if ($searchUser->num_rows == 0) {
 						$response['error'][] = 'Tài khoản không tồn tại!';
 					} else {
-						$searchEmail = $mysqli->query('SELECT * FROM `taikhoan` WHERE `email`=\''.$email.'\' AND `id` != '.$id.';');
+						$searchEmail = $mysqli->query('SELECT * FROM `taikhoan` WHERE `email`=\'' . $email . '\' AND `id` != ' . $id . ';');
 						if ($searchEmail->num_rows > 0) {
 							$response['error'][] = 'Email đã được sử dụng trên hệ thống!';
 						} else {
 							// insert DB
 							$update = '';
 							if (!empty($password)) {
-								$update = $mysqli->query('UPDATE `taikhoan` SET `role` = \''.$role.'\', `email` = \''.$email.'\', `password` = \''.md5($password).'\' WHERE `id` = '.$id.';');
+								$update = $mysqli->query('UPDATE `taikhoan` SET `role` = \'' . $role . '\', `email` = \'' . $email . '\', `password` = \'' . md5($password) . '\' WHERE `id` = ' . $id . ';');
 							} else {
-								$update = $mysqli->query('UPDATE `taikhoan` SET `role` = \''.$role.'\', `email` = \''.$email.'\' WHERE `id` = '.$id.';');
+								$update = $mysqli->query('UPDATE `taikhoan` SET `role` = \'' . $role . '\', `email` = \'' . $email . '\' WHERE `id` = ' . $id . ';');
 							}
-							
+
 							if ($update) {
 								$response['success'] = 'Sửa thông tin tài khoản thành công.';
 
@@ -74,13 +73,12 @@ else {
 			} else {
 				$response['error'][] = 'Bạn không có quyền sửa bản ghi này!';
 			}
-		}
-		else {
+		} else {
 			$response['error'][] = 'Xin lỗi, Phiên làm việc của bạn đã hết hạn. Vui lòng đăng nhập lại!';
 		}
 	} else {
 
-			$response['error'][] = 'Vui lòng nhập đầy đủ thông tin!';
+		$response['error'][] = 'Vui lòng nhập đầy đủ thông tin!';
 	}
 }
 

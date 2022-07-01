@@ -8,11 +8,10 @@ header('Content-Type: application/json');
 
 $response = [];
 
-if((empty($_SESSION['username']) && empty($_SESSION['password']))) {
+if ((empty($_SESSION['username']) && empty($_SESSION['password']))) {
 	$response['error'][] = 'Xin lỗi, Phiên làm việc của bạn đã hết hạn. Vui lòng đăng nhập lại!';
-}
-else {
-	
+} else {
+
 	if (!empty($_POST['email'])) {
 		$email = htmlspecialchars($_POST['email']);
 		$password = empty($_POST['password']) ? '' : htmlspecialchars($_POST['password']);
@@ -22,7 +21,7 @@ else {
 
 		// Xem phân quyền có cho phép sửa không
 		$taikhoan = array();
-		$result = $mysqli->query('SELECT * FROM `taikhoan` WHERE `username`=\''.htmlspecialchars($_SESSION['username']).'\' AND `password`=\''.htmlspecialchars($_SESSION['password']).'\';');
+		$result = $mysqli->query('SELECT * FROM `taikhoan` WHERE `username`=\'' . htmlspecialchars($_SESSION['username']) . '\' AND `password`=\'' . htmlspecialchars($_SESSION['password']) . '\';');
 		if ($result->num_rows > 0) {
 			$taikhoan = $result->fetch_array(MYSQLI_ASSOC);
 
@@ -40,22 +39,23 @@ else {
 				if (md5($oldpassword) != $taikhoan['password']) {
 					$response['error'][] = 'Mật khẩu ncũ không trùng khớp!';
 				}
+			} else {
+				$response['error'][] = 'Phải nhập mật khẩu hiện tại !';
 			}
-
 			if (empty($response['error'])) {
 
-				$searchEmail = $mysqli->query('SELECT * FROM `taikhoan` WHERE `email`=\''.$email.'\' AND `id` != '.$taikhoan['id'].';');
+				$searchEmail = $mysqli->query('SELECT * FROM `taikhoan` WHERE `email`=\'' . $email . '\' AND `id` != ' . $taikhoan['id'] . ';');
 				if ($searchEmail->num_rows > 0) {
 					$response['error'][] = 'Email đã được sử dụng trên hệ thống!';
 				} else {
 					// insert DB
 					$update = '';
 					if (!empty($password)) {
-						$update = $mysqli->query('UPDATE `taikhoan` SET `email` = \''.$email.'\', `password` = \''.md5($password).'\' WHERE `id` = '.$taikhoan['id'].';');
+						$update = $mysqli->query('UPDATE `taikhoan` SET `email` = \'' . $email . '\', `password` = \'' . md5($password) . '\' WHERE `id` = ' . $taikhoan['id'] . ';');
 					} else {
-						$update = $mysqli->query('UPDATE `taikhoan` SET `email` = \''.$email.'\' WHERE `id` = '.$taikhoan['id'].';');
+						$update = $mysqli->query('UPDATE `taikhoan` SET `email` = \'' . $email . '\' WHERE `id` = ' . $taikhoan['id'] . ';');
 					}
-					
+
 					if ($update) {
 						$response['success'] = 'Sửa thông tin tài khoản thành công.';
 						$response['returnURL'] = '/system/thongtintaikhoan.php';
@@ -65,11 +65,8 @@ else {
 						$response['error'][] = 'Lỗi thêm dữ liệu!';
 					}
 				}
-
 			}
-			
-		}
-		else {
+		} else {
 			$response['error'][] = 'Xin lỗi, Phiên làm việc của bạn đã hết hạn. Vui lòng đăng nhập lại!';
 		}
 	}

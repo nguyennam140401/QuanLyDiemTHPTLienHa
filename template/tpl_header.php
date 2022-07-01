@@ -88,10 +88,10 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
     <div class="wrapper">
 
         <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="/QuanLyDiemTHPT/assets/images/logo.png" alt="VNEDU" height="120"
+        <!-- <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="/QuanLyDiemTHPT/assets/images/logo.png" alt="THPT Liên Hà" height="120"
                 width="120">
-        </div>
+        </div> -->
 
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -120,7 +120,8 @@ if ((isset($_SESSION['username'])) && (isset($_SESSION['password']))) {
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="/QuanLyDiemTHPT" class="brand-link">
-                <img src="/QuanLyDiemTHPT/assets/images/logo.png" alt="VNEDU" class="brand-image" style="opacity: .8">
+                <img src="/QuanLyDiemTHPT/assets/images/logo.png" alt="THPT Liên Hà" class="brand-image"
+                    style="opacity: .8">
                 <span class="brand-text font-weight-light">THPTLH</span>
             </a>
 
