@@ -48,9 +48,11 @@ require './../template/tpl_header.php';
                         Danh sách học sinh
                     </h3>
                     <input type="search" placeholder="Nhập tên tài khoản, email muốn tìm" id="search">
+                    <?php if (in_array($taikhoan['role'], array('admin', 'manager'))) : ?>
                     <button type="button" class="btn btn-warning btn-xs float-right"
                         onclick="$('#ModalAdd').modal({show: true});"><i class="fas fa-plus-circle"></i> Thêm
                         mới</button>
+                    <?php endif; ?>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped projects" width="100%">
@@ -317,8 +319,9 @@ $(document).ready(function() {
                                     <td>${item.dienuutien.dienUuTien || "Không có"}</td>
                                     <td>${item.dantoc.tenDT}</td>
                                     <td>${item.thanhphangiadinh.tenTPGD}</td>
-                                    <td><button class="btn btn-danger btn-sm float-right deleteable" attr-id="${item.maHS}"><i class="fas fa-trash"></i>Xoá</button> 
-                                    <button class="btn btn-info btn-sm float-right editable" attr-id="${item.maHS}"><i class="fas fa-pencil-alt"></i>Sửa</button></td>
+                                    <td><?php if (in_array($taikhoan['role'], array('admin', 'manager'))) : ?><button class="btn btn-danger btn-sm float-right deleteable" attr-id="${item.maHS}"><i class="fas fa-trash"></i>Xoá</button> 
+                                    <button class="btn btn-info btn-sm float-right editable" attr-id="${item.maHS}"><i class="fas fa-pencil-alt"></i>Sửa</button>  <?php endif; ?></td>
+                                  
                                     </tr>`
                     )
                 })

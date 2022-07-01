@@ -43,9 +43,11 @@ require './../template/tpl_header.php';
                         Danh sách lớp học
                     </h3>
                     <input type="search" placeholder="Nhập tên lớp học" id="search">
+                    <?php if (in_array($taikhoan['role'], array('admin', 'manager'))) : ?>
                     <button type="button" class="btn btn-warning btn-xs float-right"
                         onclick="$('#ModalAdd').modal({show: true});"><i class="fas fa-plus-circle"></i> Thêm
                         mới</button>
+                    <?php endif; ?>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped projects" width="100%">
@@ -241,10 +243,10 @@ $(document).ready(function() {
                         `<tr role="row" class="odd"><td>${item.maLop}</td><td>${item.khoilop.tenKhoiLop}</td>
                         <td><a href="/QuanLyDiemTHPT/quanly/diem_viewclass.php?maLop=${item.maLop}">${item.tenLop}</a></td>
                         <td class="sorting_1">${item.namhoc.namHoc}</td><td>${item.giaovien.tenGV}</td>
-                        <?php if (in_array($taikhoan['role'], array('admin', 'manager', 'teacher'))) : ?>
-                        <td><a class="btn btn-danger btn-sm float-right deleteable" attr-id="${item.maLop}" href="#"><i class="fas fa-trash"></i>Xoá</a> 
- <a class="btn btn-info btn-sm float-right editable" attr-id="${item.maLop}" href="#"><i class="fas fa-pencil-alt"></i>Sửa</a></td></tr>
-                        <?php endif; ?>
+                        
+                        <td><?php if (in_array($taikhoan['role'], array('admin', 'manager'))) : ?><a class="btn btn-danger btn-sm float-right deleteable" attr-id="${item.maLop}" href="#"><i class="fas fa-trash"></i>Xoá</a> 
+ <a class="btn btn-info btn-sm float-right editable" attr-id="${item.maLop}" href="#"><i class="fas fa-pencil-alt"></i>Sửa</a></td> <?php endif; ?></tr>
+                       
                         `
                     )
                 })

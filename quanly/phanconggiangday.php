@@ -343,7 +343,7 @@ $(document).ready(function() {
             success: function(data) {
                 console.log(data)
                 $('#AssignForm select[name=maGV]').html(
-                    '<option>Chọn một giáo viên trong bảng bên cạnh</option>');
+                    '<option>Chọn một giáo viên trong bảng</option>');
                 $('#EditAssignForm select[name=maGV]').html('');
                 console.log($('#EditAssignForm select[name=maGV]'))
                 data[4].forEach(item => {

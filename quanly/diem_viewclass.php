@@ -71,7 +71,7 @@ if (!empty($_GET['maLop'])) {
                         </tr>
                         <tr>
                             <th>Chủ nhiệm </th>
-                            <td><?php echo $classInfo['tenGV']; ?><?php echo in_array($taikhoan['role'], array('admin', 'manager', 'teacher')) ? '<a class="btn btn-info btn-sm" href="#"
+                            <td><?php echo $classInfo['tenGV']; ?><?php echo in_array($taikhoan['role'], array('admin', 'manager')) ? '<a class="btn btn-info btn-sm" href="#"
                                     onclick="DoiChuNhiem()"><i class="fas fa-user-edit"></i>Thay đổi</a>' : '' ?> </td>
                         </tr>
                     </table>
@@ -82,7 +82,7 @@ if (!empty($_GET['maLop'])) {
                     <ul class="nav nav-tabs" id="HocKyTab" role="tablist">
                     </ul>
                     <button type="button"
-                        class="btn btn-warning btn-flat float-right  <?php echo in_array($taikhoan['role'], array('admin', 'manager', 'teacher')) ? '' : 'hidden' ?>"
+                        class="btn btn-warning btn-flat float-right  <?php echo in_array($taikhoan['role'], array('admin', 'manager')) ? '' : 'hidden' ?>"
                         onclick="AddHocSinh()"><i class="fas fa-plus-circle"></i>
                         Thêm mới</button>
                 </div>
