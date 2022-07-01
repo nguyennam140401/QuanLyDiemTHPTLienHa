@@ -382,8 +382,10 @@ $(document).ready(function() {
                     });
                     $('#ModalEdit').modal('hide');
                     handleGetListAccount()
+                    $("#EditSubmit").attr("disabled", false).html(
+                        'Lưu thông tin');
                     // setTimeout(function() {
-                    // 	window.location.reload();
+                    //     window.location.reload();
                     // }, 2000);
                 } else {
                     $.each(result.error, function(id, errorMessage) {

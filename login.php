@@ -20,9 +20,7 @@ $title = 'Đăng nhập';
     <meta name="author" content="vuiz.net">
     <meta property="og:title" content="Hệ thống quản lý điểm trường THPT Liên Hà" />
     <meta property="og:image" content="/assets/images/logo.png" />
-    <meta property="og:site_name" content="VNEDU" />
     <meta property="og:description" content="Hệ thống quản lý điểm trường THPT Liên Hà" />
-    <meta property="og:url" content="https://vnedu.vuiz.net" />
     <!-- Favicon -->
     <link href="/assets/images/logo.png" rel="icon" type="image/png">
     <link href="/assets/images/logo.png" rel="shortcut icon" type="image/png">
