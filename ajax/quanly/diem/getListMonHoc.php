@@ -2,10 +2,7 @@
 session_start();
 ob_start();
 require './../../../template/config.php';
-
 header('Content-Type: application/json');
-
-
 $response = [];
 
 

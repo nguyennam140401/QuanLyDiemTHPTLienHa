@@ -85,7 +85,6 @@ if ((empty($_SESSION['username']) && empty($_SESSION['password']))) {
 				"aaData" => $data
 			);
 		} else {
-
 			$response = [
 				"draw" => 0,
 				"iTotalRecords" => 0,

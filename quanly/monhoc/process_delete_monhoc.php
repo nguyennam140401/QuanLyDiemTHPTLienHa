@@ -3,7 +3,7 @@ session_start();
 require '../../template/config.php';
 $id = $_GET['id'];
 $res = $mysqli->query("SELECT * FROM `phanconggiaovien` where maMH = $id");
-if ($res) {
+if ($res->num_rows == 0) {
     $query = $mysqli->query("DELETE FROM `monhoc` WHERE maMH = '$id'");
     if ($query) {
 

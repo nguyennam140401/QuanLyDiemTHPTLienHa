@@ -42,9 +42,6 @@ if (!empty($_GET['maLop']) && !empty($_GET['maHK']) && !empty($_GET['maMH'])) :
     } else {
         $check = false;
     }
-
-
-
     if ($check) {
         // Đưa ra bảng nhập
         $table = '';

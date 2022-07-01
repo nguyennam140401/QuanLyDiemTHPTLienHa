@@ -169,45 +169,52 @@ $(document).ready(function() {
     var listMonHoc = null;
     $.ajax({
         url: '/QuanLyDiemTHPT/ajax/quanly/diem/getListMonHoc.php',
+        async: true,
         success: function(data) {
             listMonHoc = data;
-        }
-    });
-    $.ajax({
-        url: '/QuanLyDiemTHPT/ajax/tracuu/getHocKy.php',
-        success: function(data) {
-            $.each(data, function(index, row) {
-                var active = '',
-                    selected = false;
-                if (index == 0) {
-                    active = ' active';
-                    selected = 'true';
+            $.ajax({
+                url: '/QuanLyDiemTHPT/ajax/tracuu/getHocKy.php',
+                success: function(data) {
+                    $.each(data, function(index, row) {
+                        var active = '',
+                            selected = false;
+                        if (index == 0) {
+                            active = ' active';
+                            selected = 'true';
+                        }
+                        $('#HocKyTab').append(
+                            '<li class="nav-item"> <a class="nav-link' +
+                            active +
+                            '" id="tab' + index +
+                            '_data-tab" data-toggle="pill" href="#tab' +
+                            index + '_data" role="tab" aria-controls="tab' +
+                            index +
+                            '_data" aria-selected="' + selected + '">' + row
+                            .tenHK +
+                            '</a> </li>');
+
+
+                        $('#HocKyTabContent').append('<div id="tab' + index +
+                            '_data" class="tab-pane cont' + active +
+                            '"> <div class="row"><div class="col-sm-12 p-1 <?php echo in_array($taikhoan['role'], array('admin', 'manager', 'teacher')) ? '' : 'hidden'; ?>">' +
+                            MonHocButton(
+                                listMonHoc, <?php echo $maLop; ?>, row.maHK
+                                ) +
+                            '</div><div class="col-sm-12"><table class="table table-bordered table-striped" id="LopHocTable' +
+                            index + '" width="100%">' + `<thead>
+                <tr>
+                    <th width="20%">Mã học sinh</th>
+                    <th>Tên học sinh</th>
+                    <th>Ngày sinh</th>
+                    <th>Giới tính</th>
+                    <th>Nơi sinh</th>
+                </tr>
+                </thead>
+                <tbody></tbody>` +
+                            '</table></div></div></div>');
+                        fillToLop(index, <?php echo $maLop; ?>, row.maHK);
+                    });
                 }
-                $('#HocKyTab').append('<li class="nav-item"> <a class="nav-link' + active +
-                    '" id="tab' + index + '_data-tab" data-toggle="pill" href="#tab' +
-                    index + '_data" role="tab" aria-controls="tab' + index +
-                    '_data" aria-selected="' + selected + '">' + row.tenHK +
-                    '</a> </li>');
-
-
-                $('#HocKyTabContent').append('<div id="tab' + index +
-                    '_data" class="tab-pane cont' + active +
-                    '"> <div class="row"><div class="col-sm-12 p-1 <?php echo in_array($taikhoan['role'], array('admin', 'manager', 'teacher')) ? '' : 'hidden'; ?>">' +
-                    MonHocButton(
-                        listMonHoc, <?php echo $maLop; ?>, row.maHK) +
-                    '</div><div class="col-sm-12"><table class="table table-bordered table-striped" id="LopHocTable' +
-                    index + '" width="100%">' + `<thead>
-		<tr>
-			<th width="20%">Mã học sinh</th>
-			<th>Tên học sinh</th>
-			<th>Ngày sinh</th>
-			<th>Giới tính</th>
-			<th>Nơi sinh</th>
-		</tr>
-	</thead>
-    <tbody></tbody>` +
-                    '</table></div></div></div>');
-                fillToLop(index, <?php echo $maLop; ?>, row.maHK);
             });
         }
     });
@@ -238,6 +245,7 @@ function fillToLop(tableindex, maLop, maHK) {
 
 function MonHocButton(listmonHoc, maLop, maHK) {
     var listButton = '';
+
     $.each(listmonHoc, function(index, monhoc) {
         listButton += '<a class="btn btn-primary m-1" href="/QuanLyDiemTHPT/quanly/nhapdiem.php?maLop=' +
             maLop + '&maHK=' +
